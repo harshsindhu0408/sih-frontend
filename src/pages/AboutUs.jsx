@@ -18,22 +18,22 @@ const AboutUs = () => {
     {
       id: 3,
       name: "Sanjeev",
-      img: HarshPic,
+      img: MukeshPic,
     },
     {
       id: 4,
       name: "Smriti",
-      img: HarshPic,
+      img: MukeshPic,
     },
     {
       id: 5,
       name: "Neeraj",
-      img: HarshPic,
+      img: MukeshPic,
     },
     {
       id: 6,
       name: "Aditya",
-      img: HarshPic,
+      img: MukeshPic,
     },
   ];
 
@@ -41,8 +41,8 @@ const AboutUs = () => {
     <div className="w-full flex items-center justify-center mt-32">
       <div className="w-11/12 flex flex-col items-center justify-center">
         {/* heading div */}
-        <div className="text-center font-serif h-20 text-6xl font-extrabold overflow-hidden">
-          Meet The developers
+        <div className="text-center w-11/12 font-serif h-auto text-6xl font-extrabold overflow-hidden">
+          Meet The Developers
         </div>
 
         {/* info div */}
@@ -58,7 +58,7 @@ const AboutUs = () => {
 
         {/* Image cards */}
 
-        <div className=" w-9/12 mt-10 gap-y-10 flex flex-row items-center justify-center gap-x-32 flex-wrap">
+        <div className=" w-9/12 mt-10 gap-y-10 flex flex-row items-center justify-center gap-x-32 flex-wrap overflow-hidden">
         {
             photos.map((data) => (
               <ImageCard data = {data}/>
