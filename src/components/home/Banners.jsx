@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const Banner = () => {
   const banners = [
     {
+      id: 1,
       right: false,
       title: "Disater",
       img: img_1,
@@ -15,6 +16,7 @@ const Banner = () => {
         "Get real-time updates on ongoing disasters, including their type, location, and severity. Stay one step ahead with our comprehensive disaster information.",
     },
     {
+      id: 2,
       right: true,
       title: "Resources",
       img: img_2,
@@ -23,6 +25,7 @@ const Banner = () => {
         "Access a wide range of essential resources, from medical equipment to transportation, to effectively respond to disasters. Ensure you have the tools you need when it matters most.",
     },
     {
+      id: 3,
       right: false,
       title: "Agencies",
       img: img_3,
@@ -35,7 +38,7 @@ const Banner = () => {
     // main banners div
     <>
       {banners.map((banner) => (
-        <div className="banner p-20 w-full flex justify-center">
+        <div key={banner.id} className="banner p-20 w-full flex justify-center">
           {/* banner div */}
           <div className="flex w-10/12 flex-row gap-5 items-center">
             {/* banner image div */}
