@@ -36,8 +36,8 @@ const AboutUs = () => {
   ];
 
   return (
-    <div className="bg-gray-100 w-full">
-      
+    <div className="w-full mt-32">
+      About us
     </div>
   );
 };
