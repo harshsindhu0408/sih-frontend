@@ -8,6 +8,7 @@ import Disasters from './pages/Disasters';
 import Profile from './pages/Profile';
 import Resources from './pages/Resources';
 import AboutUs from './pages/AboutUs';
+import Footer from './components/common/Footer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/resources" element={<Resources /> }/>
         <Route path="/about" element={<AboutUs /> }/>
       </Routes>
+      <Footer/>
     </div>
   );
 }

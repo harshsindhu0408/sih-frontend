@@ -16,7 +16,7 @@ const Navbar = () => {
       const [isLoggedin, setIsLoggedin] = useState(true);
 
   return (
-    <nav className='w-full bg-slate-800 absolute z-10 h-20 bg-transparent flex items-center justify-center shadow-lg'>
+    <nav className='w-full bg-slate-800 absolute h-20 bg-transparent flex items-center justify-center shadow-lg'>
         <div className='w-9/12 mr-20 flex flex-row items-center justify-between'>
             {/* left part with name and logo */}
             <div className='flex flex-row items-center justify-center gap-2'>
