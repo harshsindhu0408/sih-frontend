@@ -9,7 +9,7 @@ const Banner = () => {
     {
       id: 1,
       right: false,
-      title: "Disater",
+      title: "Disaster",
       img: img_1,
       link: "/disaster",
       description:
@@ -40,7 +40,7 @@ const Banner = () => {
       {banners.map((banner) => (
         <div key={banner.id} className="banner p-20 w-full flex justify-center">
           {/* banner div */}
-          <div className="flex w-10/12 flex-row gap-5 items-center">
+          <div className="flex w-10/12 flex-row gap-16 items-center">
             {/* banner image div */}
             {!banner.right && (
               <div className="banner_img">
@@ -49,14 +49,14 @@ const Banner = () => {
             )}
 
             {/* banner info */}
-            <div className="info">
+            <div>
               {/* title */}
-              <b className="font-Roberto text-4xl">{banner.title}</b>
+              <p className="font-Roberto font-bold overflow-hidden text-4xl">{banner.title}</p>
               {/* description */}
-              <p className="w-[32rem]">{banner.description}</p>
+              <p className="w-[32rem] font-bold opacity-60 mt-4">{banner.description}</p>
               <Link to={banner.link}>
-                <button className="my-4 bg-indigo-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                  Explore
+                <button className="mt-4 w-[150px] bg-indigo-500 hover:bg-blue-600 transition-all duration-200 text-white font-bold py-2 px-4 rounded-md">
+                  Explore More
                 </button>
               </Link>
             </div>

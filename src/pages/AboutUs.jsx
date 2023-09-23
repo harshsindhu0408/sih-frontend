@@ -1,11 +1,45 @@
-import React from 'react'
+import React from "react";
+import HarshPic from "../assets/team/harsh.jpg";
 
 const AboutUs = () => {
-  return (
-    <div>
-      About us page
-    </div>
-  )
-}
+  const photos = [
+    {
+      id: 1,
+      name: "Harsh",
+      img: HarshPic,
+    },
+    {
+      id: 2,
+      name: "Harsh",
+      img: HarshPic,
+    },
+    {
+      id: 3,
+      name: "Harsh",
+      img: HarshPic,
+    },
+    {
+      id: 4,
+      name: "Harsh",
+      img: HarshPic,
+    },
+    {
+      id: 5,
+      name: "Harsh",
+      img: HarshPic,
+    },
+    {
+      id: 6,
+      name: "Harsh",
+      img: HarshPic,
+    },
+  ];
 
-export default AboutUs
+  return (
+    <div className="bg-gray-100 w-full">
+      
+    </div>
+  );
+};
+
+export default AboutUs;

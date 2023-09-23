@@ -3,7 +3,7 @@ import Banner from '../components/home/Banners'
 
 const Home = () => {
   return (
-    <div className='w-full mainSection bg-no-repeat overflow-x-hidden flex flex-col items-center justify-center'>
+    <div className='w-full mt-16 mainSection bg-no-repeat overflow-x-hidden flex flex-col items-center justify-center'>
       
       {/* Main hero section (landing page) */}
       <div className='w-8/12 text-center flex flex-col items-center mt-52 justify-center gap-y-8'>
