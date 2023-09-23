@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "../../assets/logo.svg";
-import { Link } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 
 const Navbar = () => {
   let Links = [
@@ -48,19 +48,23 @@ const Navbar = () => {
         {/* right part with login and logout buttons */}
         <div className="flex items-center justify-center gap-4">
           {isLoggedin ? (
+            <NavLink to="/login" className='nav-link'>
             <button
               className=" bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-20"
               onClick={() => setIsLoggedin(false)}
             >
               Login
             </button>
+            </NavLink>
           ) : (
+            <NavLink to='/'>
             <button
               className=" bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-20"
               onClick={() => setIsLoggedin(true)}
             >
               Logout
             </button>
+            </NavLink>
           )}
         </div>
       </div>
