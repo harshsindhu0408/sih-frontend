@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import Resources from './pages/Resources';
 import AboutUs from './pages/AboutUs';
 import Footer from './components/common/Footer';
+import Login from './pages/Auth/Login';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/profile" element={<Profile /> }/>
         <Route path="/resources" element={<Resources /> }/>
         <Route path="/about" element={<AboutUs /> }/>
+        <Route path="/login" element={<Login /> }/>
       </Routes>
       <Footer/>
     </div>
