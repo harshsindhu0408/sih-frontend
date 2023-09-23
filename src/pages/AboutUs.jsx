@@ -5,6 +5,7 @@ import MukeshPic from "../assets/team/mukesh.jpg";
 import SmritiPic from "../assets/team/smriti.jpg";
 import NeerajPic from '../assets/team/neeraj.jpg';
 import AdityaPic from '../assets/team/aditya.jpeg';
+import Banner from "../components/home/Banners";
 
 const AboutUs = () => {
   const photos = [
@@ -41,7 +42,7 @@ const AboutUs = () => {
   ];
 
   return (
-    <div className="w-full flex items-center justify-center mt-32">
+    <div className="w-full flex flex-col items-center justify-center mt-32">
       <div className="w-11/12 flex flex-col items-center justify-center">
         {/* heading div */}
         <div className="text-center w-11/12 font-serif h-auto text-6xl font-extrabold overflow-hidden">
@@ -70,6 +71,8 @@ const AboutUs = () => {
         </div>
 
       </div>
+
+      <Banner />
     </div>
   );
 };

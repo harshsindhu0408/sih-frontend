@@ -1,20 +1,17 @@
 import React from 'react'
 import "./App.css";
 import {Route, Routes } from "react-router-dom";
-import Navbar from "./components/common/Navbar";
 import Home from "./pages/Home";
 import Agencies from './pages/Agencies';
 import Disasters from './pages/Disasters';
 import Profile from './pages/Profile';
 import Resources from './pages/Resources';
 import AboutUs from './pages/AboutUs';
-import Footer from './components/common/Footer';
 import Login from './pages/Auth/Login';
 
 function App() {
   return (
     <div>
-      <Navbar/>
       <Routes>
         <Route path="/" element={<Home /> }/>
         <Route path="/agencies" element={<Agencies /> }/>
@@ -24,7 +21,6 @@ function App() {
         <Route path="/about" element={<AboutUs /> }/>
         <Route path="/login" element={<Login /> }/>
       </Routes>
-      <Footer/>
     </div>
   );
 }

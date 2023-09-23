@@ -1,11 +1,14 @@
 /* write your css here */
-*{
-    padding: 0;
-    margin: 0;
-    overflow-x: hidden;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
-.mainSection{
-    background-image: url('./assets/wallpaperflare.com_wallpaper.jpg');
+.mainSection {
+  background-image: url("./assets/wallpaperflare.com_wallpaper.jpg");
+  height: 700px;
+  object-fit: cover;
+  background-repeat: no-repeat;
 }

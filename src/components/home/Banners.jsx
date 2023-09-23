@@ -38,9 +38,9 @@ const Banner = () => {
     // main banners div
     <>
       {banners.map((banner) => (
-        <div key={banner.id} className="banner p-20 w-full flex justify-center">
+        <div key={banner.id} className="banner px-20 w-full flex flex-wrap justify-center">
           {/* banner div */}
-          <div className="flex w-10/12 flex-row gap-16 items-center">
+          <div className="flex w-10/12 flex-row flex-wrap gap-16 items-center justify-between">
             {/* banner image div */}
             {!banner.right && (
               <div className="banner_img">
