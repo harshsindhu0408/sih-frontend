@@ -1,7 +1,10 @@
 import React from "react";
+import ImageCard from "../components/ImageCard";
 import HarshPic from "../assets/team/harsh.jpg";
 import MukeshPic from "../assets/team/mukesh.jpg";
-import ImageCard from "../components/ImageCard";
+import SmritiPic from "../assets/team/smriti.jpg";
+import NeerajPic from '../assets/team/neeraj.jpg';
+import AdityaPic from '../assets/team/aditya.jpeg';
 
 const AboutUs = () => {
   const photos = [
@@ -23,17 +26,17 @@ const AboutUs = () => {
     {
       id: 4,
       name: "Smriti",
-      img: MukeshPic,
+      img: SmritiPic,
     },
     {
       id: 5,
       name: "Neeraj",
-      img: MukeshPic,
+      img: NeerajPic,
     },
     {
       id: 6,
       name: "Aditya",
-      img: MukeshPic,
+      img: AdityaPic,
     },
   ];
 
