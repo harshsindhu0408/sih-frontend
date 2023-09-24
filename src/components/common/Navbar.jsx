@@ -16,7 +16,6 @@ const Navbar = () => {
   };
 
   const Links = [
-    { id: 1, name: "Home", link: "/" },
     { id: 2, name: "Resources", link: "/resources" },
     { id: 3, name: "Disasters", link: "/disaster" },
     { id: 4, name: "Agencies", link: "/agencies" },
