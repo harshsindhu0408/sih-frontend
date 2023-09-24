@@ -34,43 +34,43 @@ const Banner = () => {
         "Explore our network of registered rescue agencies, each with unique expertise. Collaborate, coordinate, and make a difference when communities need it most.",
     },
   ];
+
   return (
-    // main banners div
-    <>
+    <div className="flex flex-col gap-y-16">
       {banners.map((banner) => (
-        <div key={banner.id} className="banner px-20 w-full flex flex-wrap justify-center">
-          {/* banner div */}
-          <div className="flex w-10/12 flex-row flex-wrap gap-16 items-center justify-between">
-            {/* banner image div */}
-            {!banner.right && (
-              <div className="banner_img">
-                <img className="w-50" src={banner.img} alt="" />
-              </div>
-            )}
-
-            {/* banner info */}
-            <div>
-              {/* title */}
-              <p className="font-Roberto font-bold overflow-hidden text-4xl">{banner.title}</p>
-              {/* description */}
-              <p className="w-[32rem] font-bold opacity-60 mt-4">{banner.description}</p>
-              <Link to={banner.link}>
-                <button className="mt-4 w-[150px] bg-indigo-500 hover:bg-blue-600 transition-all duration-200 text-white font-bold py-2 px-4 rounded-md">
-                  Explore More
-                </button>
-              </Link>
-            </div>
-
-            {/* banner image div */}
-            {banner.right && (
-              <div className="banner_img">
-                <img className="w-50" src={banner.img} alt="" />
-              </div>
-            )}
+        <div
+          key={banner.id}
+          className={`banner px-4 md:px-20 w-full flex flex-wrap justify-center ${
+            banner.right ? "md:flex-row-reverse" : "md:flex-row"
+          }`}
+        >
+          <div className="w-full md:w-1/2">
+            <img
+              className="w-full md:max-h-full"
+              src={banner.img}
+              alt=""
+            />
+          </div>
+          <div className="w-full flex flex-col justify-center md:w-1/2 mt-4 md:mt-0 md:pl-8">
+            <p className="font-Roberto overflow-hidden h-auto font-bold text-2xl md:text-4xl mb-2">
+              {banner.title}
+            </p>
+            <p className="font-bold opacity-60 mb-4 md:w-[32rem]">
+              {banner.description}
+            </p>
+            <Link to={banner.link}>
+              <button
+                className={`w-full md:w-[150px] ${
+                  banner.right ? "md:ml-auto" : "md:mr-auto"
+                } bg-indigo-500 hover:bg-blue-600 transition-all duration-200 text-white font-bold py-2 px-4 rounded-md`}
+              >
+                Explore More
+              </button>
+            </Link>
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

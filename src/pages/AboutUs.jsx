@@ -49,7 +49,7 @@ const AboutUs = () => {
         </div>
 
         {/* info div */}
-        <div className="w-6/12 text-lg font-Roborto opacity-80 text-center">
+        <div className="md:w-6/12 sm:w-full sm:mt-4 text-lg font-Roborto opacity-80 text-center">
           {`"At MDU Rohtak, we are a dedicated team of aspiring engineers pursuing 
           our B.Tech in Computer Science and Engineering. With a passion for technology
            and innovation, we embarked on our journey to create cutting-edge solutions.
