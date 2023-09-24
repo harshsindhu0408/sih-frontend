@@ -9,6 +9,7 @@ import Resources from './pages/Resources';
 import AboutUs from './pages/AboutUs';
 import Login from './pages/Auth/Login';
 import ChangePassword from './pages/Auth/ChangePassword';
+import SignUp from './pages/Auth/SignUp';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/profile" element={<Profile /> }/>
         <Route path="/resources" element={<Resources /> }/>
         <Route path="/about" element={<AboutUs /> }/>
+        <Route path="/signup" element={<SignUp /> }/>
         <Route path="/login" element={<Login /> }/>
         <Route path="/change-password" element={<ChangePassword /> }/>
       </Routes>

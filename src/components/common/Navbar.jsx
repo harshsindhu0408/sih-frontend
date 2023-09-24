@@ -17,6 +17,7 @@ const Navbar = () => {
   return (
     <nav className="w-full z-10 bg-gray-800 relative h-20 flex items-center justify-center shadow-lg">
       <div className="w-9/12 mr-20 flex flex-row items-center justify-between">
+
         {/* left part with name and logo */}
         <div className="flex flex-row items-center justify-center gap-2">
           <Link
@@ -32,7 +33,7 @@ const Navbar = () => {
 
         {/* mid part with links and all */}
         <div>
-          <ul className="flex items-center mr-10 justify-center gap-8">
+          <ul className="flex items-center mr-10 justify-center gap-6">
             {Links.map((link) => (
               <Link
                 key={link.id}
@@ -46,27 +47,28 @@ const Navbar = () => {
         </div>
 
         {/* right part with login and logout buttons */}
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex items-center justify-center text-center">
           {isLoggedin ? (
-            <NavLink to="/login" className='nav-link'>
+            <NavLink to="/signup" className='nav-link'>
             <button
-              className=" bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-20"
+              className=" bg-indigo-500 text-center hover:bg-indigo-600 block font-bold text-white rounded-full px-4 py-2 duration-300 w-24"
               onClick={() => setIsLoggedin(false)}
             >
-              Login
+              SignUp
             </button>
             </NavLink>
           ) : (
             <NavLink to='/'>
             <button
-              className=" bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-20"
+              className=" bg-indigo-500 text-center hover:bg-indigo-600 block font-bold text-white rounded-full px-4 py-2 duration-300 w-24"
               onClick={() => setIsLoggedin(true)}
             >
-              Logout
+              Login
             </button>
             </NavLink>
           )}
         </div>
+
       </div>
     </nav>
   );
