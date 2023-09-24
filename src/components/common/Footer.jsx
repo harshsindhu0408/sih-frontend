@@ -1,18 +1,30 @@
 import React from "react";
 import logo from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGithub,
+  faLinkedin,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
+  const iconStyle = {
+    fontSize: "20px",
+    margin: "10px",
+  };
+
   return (
-    <footer className="w-full bg-gray-800 text-white p-10 shadow-lg ">
+    <footer className=" mt-10 w-full bg-gray-800 h-100 p-5 pl-5 items-center text-white shadow-lg">
       <div
-        className="underline"
-        style={{ fontSize: "70px", marginBottom: "50px" }}
+        className="underline mb-5"
+        style={{ fontSize: "50px", marginLeft: "50px" }}
       >
         Contact Us
       </div>
-      <div className=" mb-10 flex flex-row items-center justify-center">
-        <div className="basis-2/4 mb-10">
+      <br></br>
+      <div className=" mb-5 flex flex-row ml-10 ">
+        <div className="basis-2/5 mb-10">
           <div>
             <img src={logo} alt="" width="70px" />
           </div>
@@ -21,7 +33,7 @@ const Footer = () => {
           </div>
           <div></div>
         </div>
-        <div className="basis-1/4 ">
+        <div className="basis-1/5 ">
           <ul className="space-y-2">
             <li>
               <p className="md:font-bold underline">Company</p>
@@ -40,7 +52,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="basis-1/4">
+        <div className="basis-1/5">
           <ul className="space-y-2">
             <li>
               <p className="font-bold underline">Legal</p>
@@ -56,9 +68,18 @@ const Footer = () => {
             </li>
           </ul>
         </div>
+        <div className=" mt-10 basis-1/5">
+          <a style={iconStyle} href="#">
+            <FontAwesomeIcon icon={faGithub} />
+          </a>
+          <a style={iconStyle} href="#">
+            <FontAwesomeIcon icon={faLinkedin} />
+          </a>
+          <a style={iconStyle} href="#">
+            <FontAwesomeIcon icon={faTwitter} />
+          </a>
+        </div>
       </div>
-      <hr></hr>
-      <div className="mt-5">© 2020 Your Company, Inc. All rights reserved.</div>
     </footer>
   );
 };

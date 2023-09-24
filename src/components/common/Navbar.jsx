@@ -58,7 +58,7 @@ const Navbar = () => {
             </button>
             </NavLink>
           ) : (
-            <NavLink to='/'>
+            <NavLink to='/login'>
             <button
               className=" bg-indigo-500 text-center hover:bg-indigo-600 block font-bold text-white rounded-full px-4 py-2 duration-300 w-24"
               onClick={() => setIsLoggedin(true)}
