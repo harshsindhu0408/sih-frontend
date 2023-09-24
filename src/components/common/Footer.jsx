@@ -22,9 +22,11 @@ const Footer = () => {
             <img src={logo} alt="logo" width="60px" />
           </div>
           <div className="text-lg mb-4 md:mb-0 text-center md:text-left">
+            <Link to={'/'}>
             <div className="md:text-4xl sm:text-2xl font-bold overflow-hidden ml-2">
               RescueConnect
             </div>
+            </Link>
             <p className="md:w-[400px] ml-2 mt-4 opacity-90 sm:text-sm">
               We Rescue the people in Need with unwavering dedication, providing
               assistance, hope, and support during times of crisis, ensuring a
