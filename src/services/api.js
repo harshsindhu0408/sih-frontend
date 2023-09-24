@@ -1,9 +1,9 @@
-const BASE_URL = process.env.REACT_APP_BASE_URL
+const BASE_URL = "http://localhost:8080/api/n1"
 
 // AGENCY END POINTS
 export const agencyEndPoints = {
     REGISTER_API: BASE_URL + "/agency/registerAgency",
-    LOGIN_API: BASE_URL + "/agency/loginAgency",
+    LOGIN_API: BASE_URL + "/agency/login",
     UPDATE_PASSWORD_API: BASE_URL + "agency/updatePassword",
     UPDATE_AGENCY_INFO_API: BASE_URL + "agency/updateAgency",
     GET_AGENCY_RESOURCE_AND_DISASTER_API: BASE_URL + "agency/getAllAgencyLocations/:id",

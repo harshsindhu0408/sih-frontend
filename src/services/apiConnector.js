@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export let apiConnector = async function ({
+let apiConnector = async function ({
   method = "get",
   url,
-  body=null,
+  body = null,
   headers = null,
 }) {
   return await new Promise((resolve, reject) => {
@@ -20,3 +20,5 @@ export let apiConnector = async function ({
       });
   });
 };
+
+export default apiConnector;

@@ -1,8 +1,11 @@
 import React from "react";
 import Banner from "../components/home/Banners";
-import { AiOutlineArrowDown } from "react-icons/ai";
+import { authLogin } from "../redux/Actions/authAction";
+import { useDispatch } from "react-redux";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  dispatch(authLogin());
   return (
     <div className="scrool-smooth flex flex-col items-center justify-center gap-y-16">
       <div className="mainSection w-full flex items-center justify-center">
