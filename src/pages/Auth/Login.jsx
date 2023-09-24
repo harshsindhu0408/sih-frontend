@@ -1,22 +1,27 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bgimg from "../../assets/vecteezy_3d-male-character-happy-working-on-a-laptop_24387907_314.png";
-import { authLogin } from "../../redux/Actions/authAction"
-import { useDispatch } from "react-redux";
+import { authLogin } from "../../redux/Actions/authAction";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
+  const authState = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // State variable to store user login data (email and password)
   const [user, setUser] = useState({ email: "", password: "" });
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(authLogin(user));
+    dispatch(authLogin(user, navigate));
   };
 
   return (
     <div className="flex flex-col items-center justify-center bg-gray-50 min-h-screen">
       <div className="w-11/12 flex flex-col items-center justify-center lg:flex-row xl:flex-row 2xl:flex-row sm:flex-col flex-wrap">
-        {/* Left Section (Signup Form) */}
+        {/* Left Section (Login Form) */}
         <div className="lg:w-7/12  sm:w-full p-8">
           <h2 className="text-4xl overflow-hidden font-extrabold text-gray-900">
             Login to Your Account
@@ -65,7 +70,7 @@ const Login = () => {
               </div>
             </div>
 
-            {/* Dont have an accont */}
+            {/* Don't have an account */}
             <div className="mt-4 text-center">
               <p className="text-sm text-gray-600">
                 Don't have an account?{" "}
@@ -80,12 +85,18 @@ const Login = () => {
 
             {/* Submit Button */}
             <div>
-              <button
-                type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                Login
-              </button>
+              {!authState.loading ? (
+                <button
+                  type="submit"
+                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Login
+                </button>
+              ) : (
+                <center>
+                  <b>Loading...</b>
+                </center>
+              )}
             </div>
           </form>
         </div>

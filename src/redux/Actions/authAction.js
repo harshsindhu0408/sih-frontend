@@ -4,9 +4,14 @@ import { agencyEndPoints } from "../../services/api";
 import { toast } from "react-toastify";
 
 // Action to handle user login
-export const authLogin = (user_data) => {
+export const authLogin = (user_data, navigate) => {
   return async (dispatch) => {
     try {
+      // Dispatch the LOGIN_REQUEST action to indicate login request in progress
+      dispatch({
+        type: AuthTypes.LOGIN_REQUEST,
+      });
+
       // Send a login request to the API
       const response = await apiConnector({
         method: "POST",
@@ -20,15 +25,23 @@ export const authLogin = (user_data) => {
       // Store the token in sessionStorage
       sessionStorage.setItem("_token", token);
 
-      // Dispatch the LOGIN action to update the Redux store
+      // Dispatch the LOGIN_SUCCESS action to update the Redux store
       dispatch({
-        type: AuthTypes.LOGIN,
+        type: AuthTypes.LOGIN_SUCCESS,
         payload: { token }, // You can store additional user data in the payload if needed
       });
 
       // Show a success toast
       toast.success("Login successfully!");
+
+      // navigate to home
+      navigate("/");
     } catch (error) {
+      // Dispatch the LOGIN_FAILED action on error
+      dispatch({
+        type: AuthTypes.LOGIN_FAILED,
+      });
+
       // Handle API errors and show an error toast
       toast.error(error.response.data.message);
     }
@@ -51,10 +64,15 @@ export const authLogout = () => {
   };
 };
 
-// Action to handle user registation
-export const authRegister = (user_data) => {
-  return async () => {
+// Action to handle user registration
+export const authRegister = (user_data, navigate) => {
+  return async (dispatch) => {
     try {
+      // Dispatch the SIGNUP_REQUEST action to indicate register request in progress
+      dispatch({
+        type: AuthTypes.SIGNUP_REQUEST,
+      });
+
       // Send a register request to the API
       const response = await apiConnector({
         method: "POST",
@@ -62,9 +80,22 @@ export const authRegister = (user_data) => {
         body: user_data,
       });
 
+      // Dispatch the SIGNUP_SUCCESS action to update the Redux store
+      dispatch({
+        type: AuthTypes.SIGNUP_SUCCESS,
+      });
+
       // Show a success toast
       toast.success("Successfully registered!");
+
+      // navigate to login page
+      navigate("/login");
     } catch (error) {
+      // Dispatch the SIGNUP_FAILED action on error
+      dispatch({
+        type: AuthTypes.SIGNUP_FAILED,
+      });
+
       // Handle API errors and show an error toast
       toast.error(error.response.data.message);
     }
