@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import bgimg from "../../assets/vecteezy_3d-male-character-happy-working-on-a-laptop_24387907_314.png";
+import { authLogin } from "../../redux/Actions/authAction"
+import { useDispatch } from "react-redux";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const [user, setUser] = useState({ email: "", password: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your login logic here
+    dispatch(authLogin(user));
   };
 
   return (
@@ -21,7 +23,6 @@ const Login = () => {
           </h2>
 
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-
             {/* Email */}
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
@@ -36,8 +37,8 @@ const Login = () => {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={user.email}
+                  onChange={(e) => setUser({ ...user, email: e.target.value })}
                 />
               </div>
             </div>
@@ -56,8 +57,10 @@ const Login = () => {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={user.password}
+                  onChange={(e) =>
+                    setUser({ ...user, password: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -84,7 +87,6 @@ const Login = () => {
                 Login
               </button>
             </div>
-
           </form>
         </div>
 

@@ -1,24 +1,27 @@
 import axios from "axios";
 
-let apiConnector = async function ({
+const apiConnector = async function ({
   method = "get",
   url,
   body = null,
   headers = null,
 }) {
-  return await new Promise((resolve, reject) => {
-    axios(url, {
+  try {
+    const response = await axios({
       method: method,
+      url: url,
       data: body,
       headers: headers,
-    })
-      .then((data) => {
-        resolve(data);
-      })
-      .catch((error) => {
-        reject(error.response);
-      });
-  });
+    });
+    return response.data;
+  } catch (error) {
+    const customError = new Error("API call failed");
+    customError.response = {
+      data: error.response.data,
+      status: error.response.status,
+    };
+    throw customError;
+  }
 };
 
 export default apiConnector;

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import bgimg from "../../assets/signup.png";
+import { authRegister } from "../../redux/Actions/authAction";
+import { useDispatch } from "react-redux";
 
 const SignUp = () => {
-    const [name, setName] = useState("");
+  const dispatch = useDispatch();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [street, setStreet] = useState("");
@@ -55,6 +57,19 @@ const SignUp = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    const user_data = {
+      name: name,
+      email: email,
+      password: password,
+      street: street,
+      city: city,
+      state: state,
+      postalCode: postalCode,
+      country: country,
+      phoneNumber: phoneNumber,
+      expertise: expertise,
+    };
+    dispatch(authRegister(user_data));
     // You can add your signup logic here
     // Typically, you would make an API request to your server to create a new agency
   };
@@ -62,7 +77,6 @@ const SignUp = () => {
   return (
     <div className="flex flex-col items-center justify-center bg-gray-50 min-h-screen">
       <div className="w-11/12 flex flex-col items-center justify-center lg:flex-row xl:flex-row 2xl:flex-row sm:flex-col flex-wrap">
-
         {/* Left Section (Signup Form) */}
         <div className="lg:w-7/12  sm:w-full p-8">
           <h2 className="text-3xl overflow-hidden font-extrabold text-gray-900">
@@ -296,10 +310,9 @@ const SignUp = () => {
             className="object-cover ml-10 object-center sm:h-auto"
           />
         </div>
-
       </div>
     </div>
   );
-}
+};
 
-export default SignUp
+export default SignUp;
