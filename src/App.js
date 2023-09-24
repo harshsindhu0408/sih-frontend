@@ -11,6 +11,7 @@ import Login from './pages/Auth/Login';
 import ChangePassword from './pages/Auth/ChangePassword';
 import SignUp from './pages/Auth/SignUp';
 import Contact from './pages/Contact';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/signup" element={<SignUp /> }/>
         <Route path="/login" element={<Login /> }/>
         <Route path="/change-password" element={<ChangePassword /> }/>
+        <Route path="/privacy-policy" element={<PrivacyPolicy /> }/>
       </Routes>
     </div>
   );

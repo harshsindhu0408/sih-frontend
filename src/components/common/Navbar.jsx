@@ -4,13 +4,11 @@ import { Link,NavLink } from "react-router-dom";
 
 const Navbar = () => {
   let Links = [
-    { id: 1, name: "Home", link: "/" },
-    { id: 2, name: "Resources", link: "/resources" },
-    { id: 3, name: "Disasters", link: "/disaster" },
-    { id: 4, name: "Agencies", link: "/agencies" },
-    { id: 5, name: "Profile", link: "/profile" },
-    { id: 6, name: "About Us", link: "/about" },
-    { id: 7, name: "Contact Us", link: "/contact" },
+    { id: 1, name: "Resources", link: "/resources" },
+    { id: 2, name: "Disasters", link: "/disaster" },
+    { id: 3, name: "Agencies", link: "/agencies" },
+    { id: 4, name: "Profile", link: "/profile" },
+    { id: 5, name: "About Us", link: "/about" },
   ];
 
   const [isLoggedin, setIsLoggedin] = useState(true);
