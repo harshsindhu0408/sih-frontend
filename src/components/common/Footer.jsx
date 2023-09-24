@@ -17,6 +17,8 @@ const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white shadow-lg py-6">
       <div className="w-11/12 container mx-auto flex flex-col lg:flex-row justify-between items-center">
+
+        {/* left div with logo and name */}
         <div className="flex flex-row items-start justify-center">
           <div className="md:flex flex-row items-start justify-start sm:hidden">
             <img src={logo} alt="logo" width="60px" />
@@ -35,6 +37,7 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Central div with links */}
         <div className="flex flex-row gap-x-16 mt-2 mb-2 items-center justify-center">
           <div>
             <ul className="space-y-2 md:font-bold  font-Roborto">
@@ -65,6 +68,7 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Rightmost div with icons */}
         <div>
           <ul className="flex space-x-4">
             <li>
