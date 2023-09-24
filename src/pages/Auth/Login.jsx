@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import bgimg from "../../assets/vecteezy_3d-male-character-happy-working-on-a-laptop_24387907_314.png";
 import { authLogin } from "../../redux/Actions/authAction";
@@ -11,6 +11,13 @@ const Login = () => {
 
   // State variable to store user login data (email and password)
   const [user, setUser] = useState({ email: "", password: "" });
+
+  // navigate to home if user is logged
+  useEffect(() => {
+    if (authState.isLoggedin) {
+      navigate("/");
+    }
+  }, authState.isLoggedin);
 
   // Handle form submission
   const handleSubmit = (e) => {

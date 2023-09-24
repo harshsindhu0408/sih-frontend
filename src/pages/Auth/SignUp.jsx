@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import bgimg from "../../assets/signup.png";
 import { authRegister } from "../../redux/Actions/authAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -57,6 +57,13 @@ const SignUp = () => {
     "Uttarakhand",
     "West Bengal",
   ];
+
+  // navigate to home if user is logged
+  useEffect(() => {
+    if (authState.isLoggedin) {
+      navigate("/");
+    }
+  }, authState.isLoggedin);
 
   // Handle form submission
   const handleSubmit = (e) => {
