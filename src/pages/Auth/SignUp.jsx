@@ -57,19 +57,28 @@ const SignUp = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    const user_data = {
-      name: name,
-      email: email,
-      password: password,
-      street: street,
-      city: city,
-      state: state,
-      postalCode: postalCode,
-      country: country,
-      phoneNumber: phoneNumber,
-      expertise: expertise,
-    };
-    dispatch(authRegister(user_data));
+
+  // Create the nested contact object
+  const contactData = {
+    address: {
+      street,
+      city,
+      state,
+      postalCode,
+      country,
+    },
+  };
+
+  const user_data = {
+    name,
+    email,
+    password,
+    contact: contactData, // Assign the nested contact object
+    phoneNumber,
+    expertise,
+  };
+
+  dispatch(authRegister(user_data));
     // You can add your signup logic here
     // Typically, you would make an API request to your server to create a new agency
   };
@@ -152,7 +161,7 @@ const SignUp = () => {
                 </label>
                 <input
                   id="street"
-                  name="street"
+                  name="contact.address.street" // Use nested structure
                   type="text"
                   autoComplete="street"
                   required
@@ -172,7 +181,7 @@ const SignUp = () => {
                 </label>
                 <input
                   id="city"
-                  name="city"
+                  name="contact.address.city" // Use nested structure
                   type="text"
                   autoComplete="city"
                   required
@@ -192,7 +201,7 @@ const SignUp = () => {
                 </label>
                 <select
                   id="state"
-                  name="state"
+                  name="contact.address.state" // Use nested structure
                   autoComplete="state"
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -217,7 +226,7 @@ const SignUp = () => {
                 </label>
                 <input
                   id="postalCode"
-                  name="postalCode"
+                  name="contact.address.postalCode" // Use nested structure
                   type="text"
                   autoComplete="postalCode"
                   required
@@ -237,7 +246,7 @@ const SignUp = () => {
                 </label>
                 <input
                   id="country"
-                  name="country"
+                  name="contact.address.country" // Use nested structure
                   type="text"
                   autoComplete="country"
                   required
