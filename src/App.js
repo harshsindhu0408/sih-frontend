@@ -8,6 +8,7 @@ import Profile from './pages/Profile';
 import Resources from './pages/Resources';
 import AboutUs from './pages/AboutUs';
 import Login from './pages/Auth/Login';
+import ChangePassword from './pages/Auth/ChangePassword';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/resources" element={<Resources /> }/>
         <Route path="/about" element={<AboutUs /> }/>
         <Route path="/login" element={<Login /> }/>
+        <Route path="/change-password" element={<ChangePassword /> }/>
       </Routes>
     </div>
   );

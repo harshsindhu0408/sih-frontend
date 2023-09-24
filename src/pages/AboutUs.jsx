@@ -5,7 +5,6 @@ import MukeshPic from "../assets/team/mukesh.jpg";
 import SmritiPic from "../assets/team/smriti.jpg";
 import NeerajPic from '../assets/team/neeraj.jpg';
 import AdityaPic from '../assets/team/aditya.jpeg';
-import Banner from "../components/home/Banners";
 
 const AboutUs = () => {
   const photos = [
@@ -71,8 +70,6 @@ const AboutUs = () => {
         </div>
 
       </div>
-
-      <Banner />
     </div>
   );
 };
