@@ -22,7 +22,6 @@ const Navbar = () => {
     { id: 4, name: "Agencies", link: "/agencies" },
     { id: 5, name: "Profile", link: "/profile" },
     { id: 6, name: "About Us", link: "/about" },
-    { id: 7, name: "Contact Us", link: "/contact" },
   ];
 
   return (

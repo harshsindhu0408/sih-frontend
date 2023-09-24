@@ -10,74 +10,79 @@ import {
 
 const Footer = () => {
   const iconStyle = {
-    fontSize: "20px",
+    fontSize: "40px",
     margin: "10px",
   };
 
   return (
-    <footer className=" mt-10 w-full bg-gray-800 h-100 p-5 pl-5 items-center text-white shadow-lg">
-      <div
-        className="underline mb-5"
-        style={{ fontSize: "50px", marginLeft: "50px" }}
-      >
-        Contact Us
-      </div>
-      <br></br>
-      <div className=" mb-5 flex flex-row ml-10 ">
-        <div className="basis-2/5 mb-10">
+    <footer className="bg-gray-800 text-white shadow-lg py-6">
+      <div className="w-11/12 container mx-auto flex flex-col lg:flex-row justify-between items-center">
+        <div className="flex flex-row items-start justify-center">
+          <div className="md:flex flex-row items-start justify-start sm:hidden">
+            <img src={logo} alt="logo" width="60px" />
+          </div>
+          <div className="text-lg mb-4 md:mb-0 text-center md:text-left">
+            <Link to={'/'}>
+            <div className="md:text-4xl sm:text-2xl font-bold overflow-hidden ml-2">
+              RescueConnect
+            </div>
+            </Link>
+            <p className="md:w-[400px] ml-2 mt-4 opacity-90 sm:text-sm">
+              We Rescue the people in Need with unwavering dedication, providing
+              assistance, hope, and support during times of crisis, ensuring a
+              safer and more resilient world for all
+            </p>
+          </div>
+        </div>
+
+        <div className="flex flex-row gap-x-16 mt-2 mb-2 items-center justify-center">
           <div>
-            <img src={logo} alt="" width="70px" />
+            <ul className="space-y-2 md:font-bold  font-Roborto">
+              <li>
+                <Link to="/disaster">Disasters</Link>
+              </li>
+              <li>
+                <Link to="/resources">Resources</Link>
+              </li>
+              <li>
+                <Link to="/about">About Us</Link>
+              </li>
+            </ul>
           </div>
-          <div style={{ overflow: "hidden" }} className="mt-6 text-2xl">
-            <span>We Rescue the people in Need</span>
+
+          <div>
+            <ul className="space-y-2 md:font-bold  font-Roborto">
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
+              <li>
+                <Link to="/agencies">Agencies</Link>
+              </li>
+              <li>
+                <Link to="/privacy-policy">Privacy ploicy</Link>
+              </li>
+            </ul>
           </div>
-          <div></div>
         </div>
-        <div className="basis-1/5 ">
-          <ul className="space-y-2">
+
+        <div>
+          <ul className="flex space-x-4">
             <li>
-              <p className="md:font-bold underline">Company</p>
+              <a style={iconStyle} href="#">
+                <FontAwesomeIcon icon={faGithub} />
+              </a>
             </li>
             <li>
-              <Link to="/about">About Us</Link>
+              <a style={iconStyle} href="#">
+                <FontAwesomeIcon icon={faLinkedin} />
+              </a>
             </li>
             <li>
-              <Link to="/about">Our Team</Link>
-            </li>
-            <li>
-              <Link to="/">Careers</Link>
-            </li>
-            <li>
-              <Link to="/">Contact Us</Link>
+              <a style={iconStyle} href="#">
+                <FontAwesomeIcon icon={faTwitter} />
+              </a>
             </li>
           </ul>
-        </div>
-        <div className="basis-1/5">
-          <ul className="space-y-2">
-            <li>
-              <p className="font-bold underline">Legal</p>
-            </li>
-            <li>
-              <Link to="/">Blog</Link>
-            </li>
-            <li>
-              <Link to="/">Case Studies</Link>
-            </li>
-            <li>
-              <Link to="/">FAQs</Link>
-            </li>
-          </ul>
-        </div>
-        <div className=" mt-10 basis-1/5">
-          <a style={iconStyle} href="#">
-            <FontAwesomeIcon icon={faGithub} />
-          </a>
-          <a style={iconStyle} href="#">
-            <FontAwesomeIcon icon={faLinkedin} />
-          </a>
-          <a style={iconStyle} href="#">
-            <FontAwesomeIcon icon={faTwitter} />
-          </a>
         </div>
       </div>
     </footer>

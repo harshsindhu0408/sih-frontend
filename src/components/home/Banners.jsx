@@ -36,7 +36,7 @@ const Banner = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-y-16">
+    <div className="flex flex-col mb-10 gap-y-16">
       {banners.map((banner) => (
         <div
           key={banner.id}

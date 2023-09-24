@@ -13,6 +13,7 @@ import SignUp from "./pages/Auth/SignUp";
 import Contact from "./pages/Contact";
 import { useDispatch } from "react-redux";
 import { AuthTypes } from "./redux/action_types";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/change-password" element={<ChangePassword />} />
       </Routes>
     </div>
