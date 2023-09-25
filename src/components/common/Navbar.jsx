@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import logo from "../../assets/logo.svg";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authLogout } from "../../redux/Actions/authAction";
 
 const Navbar = () => {
   const state = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     // Dispatch the logout action
     dispatch(authLogout());
+    navigate('/');
   };
 
   const Links = [

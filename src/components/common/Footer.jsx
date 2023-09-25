@@ -15,7 +15,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-800 text-white shadow-lg py-6">
+    <footer className="bg-gray-800 relative text-white shadow-lg py-6">
       <div className="w-11/12 container mx-auto flex flex-col lg:flex-row justify-between items-center">
 
         {/* left div with logo and name */}
