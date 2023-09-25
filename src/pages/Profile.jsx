@@ -8,7 +8,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAccountInfo());
-  });
+  },[]);
   return (
     <>
       {state.loading ? (
