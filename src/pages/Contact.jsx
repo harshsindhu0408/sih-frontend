@@ -1,81 +1,125 @@
-import React, { useRef, useState } from 'react'
-import emailjs from "@emailjs/browser";
-import { toast } from "react-toastify";
-import { useNavigate } from 'react-router-dom';
-
+import React, { useState } from "react";
+import bgimg from "./../assets/contact-us.png";
 const Contact = () => {
-  const form = useRef();
-  const [done, setDone] = useState(false)
-  const navigate=useNavigate();
+  const [users, setUsers] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    comment: "",
+  });
 
-  const sendEmail = (e) => {
-    e.preventDefault();
-    emailjs.sendForm(
-        "service_0skg4qs",
-        "template_m1uxl0p",
-        form.current,
-        "CewSSi3qeC711XaSg"
-      )
-      .then((result) => {
-          console.log(result.text);
-          setDone(true);
-          toast.success("Message sent  successfully!");
-          navigate("/");
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUsers((user) => ({ ...user, [name]: value }));
+    // console.log(users);
   };
+
+  const [records, setRecords] = useState([]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newRecords = { ...users };
+    setRecords([...records, newRecords]);
+    // console.log(users);
+  };
+
   return (
-    <div className='maincontact'>
-  <section id="page-header" className="about-header">
-    <h2>#let's_talk</h2>
-    <p>Here you can leave your message,We love to hear you</p>
-  </section>
-  <section id="contact-details" className="section-p1">
-    <div className="details">
-      <span>Get in touch</span>
-      <h2>visit one of our  locations or contact us today</h2>
-      <h3>Head office</h3>
-      <div>
-        <li>
-          <p className="fa-solid">
-           Maharshi Dayanand  University ,rohtak, harayan near delhi bypass road</p>
-        </li>
-        <li>
-          <p className="fa-solid">
-           ngb4820@example.com</p>
-        </li>
-        <li>
-          <p className="fa-solid">
-           +01 2222 365/(+91) 01 2345 6789</p>
-        </li>
-        <li>
-          <p className="fa-solid">
-          Monday to saturday: 9.00am to 5.00pm </p>
-        </li>
+    <div className="flex flex-col items-center justify-center bg-gray-50 min-h-screen">
+      <div className="w-11/12 flex flex-col items-center justify-center lg:flex-row xl:flex-row 2xl:flex-row sm:flex-col flex-wrap">
+        {/* Left section contact form */}
+        <div className="lg:w-7/12  sm:w-full p-8">
+          <h2 className="text-3xl overflow-hidden font-extrabold text-gray-900 truncate">
+            Contact Us
+          </h2>
+
+          <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+            {/* Full name */}
+            <div className="rounded-md shadow-sm -space-y-px">
+              <div>
+                <label htmlFor="name" className="sr-only">
+                  Full Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Name"
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            {/*  */}
+            <div className="rounded-md shadow-sm -space-y-px">
+              <div>
+                <label htmlFor="name" className="sr-only">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="email"
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            {/* contact number */}
+            <div className="rounded-md shadow-sm -space-y-px">
+              <div>
+                <label htmlFor="name" className="sr-only">
+                  Contact Number
+                </label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  autoComplete="phone"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Phone Number"
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <textarea
+              cols="10"
+              rows="5"
+              name="comment"
+              id="comment"
+              required
+              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              placeholder="Write your message..."
+              onChange={handleChange}
+            ></textarea>
+
+            <div>
+              <button
+                type="submit"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Send
+              </button>
+            </div>
+          </form>
+        </div>
+        {/* right section  */}
+        <div className="lg:w-5/12  sm:w-full flex items-center justify-center">
+          <img
+            src={bgimg} // Replace with the actual image path
+            alt="Agency"
+            width="800px"
+            className="object-cover ml-10 object-center sm:h-auto"
+          />
+        </div>
       </div>
     </div>
-    <div className="map">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6987.435125860597!2d76.6206771!3d28.87701775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d84ddaef54325%3A0x5c86cf8f3f0e375d!2sMaharshi%20Dayanand%20University%2C%20Rohtak%2C%20Haryana%20124001!5e0!3m2!1sen!2sin!4v1695540303174!5m2!1sen!2sin" width={600} height={450} style={{border: 0}} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-    </div>
-  </section>
-  <section id="form-details">
-    <form ref={form} onSubmit={sendEmail}>
-      <span>LEAVE A MEASSAGE</span>
-      <h2>We love to hear you</h2>
-      <input type="text" placeholder="Your Good Name" name="user_name" />
-      <input type="text" name="user_email" placeholder="E-mail" />
-      <input type="text" placeholder="Subject " />
-      <textarea name id cols={30} rows={5} placeholder="Your message" defaultValue={""} />
-      <button className="normal">Submit</button>
-    </form>
-  </section>
-</div>
-  )
-}
+  );
+};
 
-export default Contact
-
-
+export default Contact;
