@@ -15,10 +15,11 @@ const Navbar = () => {
   console.log("logged in hai ->> ", state.isLoggedin);
 
   const Links = [
-    { id: 2, name: "Resources", link: "/resources" },
-    { id: 3, name: "Disasters", link: "/disaster" },
-    { id: 4, name: "Agencies", link: "/agencies" },
-    { id: 6, name: "About Us", link: "/about" },
+    { id: 1, name: "Resources", link: "/resources" },
+    { id: 2, name: "Disasters", link: "/disaster" },
+    { id: 3, name: "Agencies", link: "/agencies" },
+    { id: 4, name: "About Us", link: "/about" },
+    { id: 5, name: "Contact Us", link: "/contact" },
   ];
 
   return (
