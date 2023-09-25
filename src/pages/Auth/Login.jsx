@@ -17,7 +17,7 @@ const Login = () => {
     if (authState.isLoggedin) {
       navigate("/");
     }
-  }, [authState.isLoggedin]);
+  }, [authState.isLoggedin,navigate]);
 
   // Handle form submission
   const handleSubmit = (e) => {
