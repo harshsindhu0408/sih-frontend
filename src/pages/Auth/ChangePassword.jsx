@@ -21,7 +21,9 @@ const ChangePassword = () => {
     }
 
     // Dispatch the updatePassword action with the new password
-    dispatch(updatePassword({ oldPassword, newPassword }));
+    dispatch(
+      updatePassword({ oldpassword: oldPassword, newpassword: newPassword })
+    );
 
     // Clear the input fields
     setOldPassword("");

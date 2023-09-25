@@ -26,13 +26,14 @@ const authReducer = (state = initialState, action) => {
       };
 
     // Handle login, signup, password update failures, and logout by stopping loading
-    case AuthTypes.LOGIN_FAILED:
-    case AuthTypes.SIGNUP_FAILED:
     case AuthTypes.SIGNUP_SUCCESS:
     case AuthTypes.UPDATE_PASSWORD_FAILED:
     case AuthTypes.UPDATE_PASSWORD_SUCCESS:
-    case AuthTypes.LOGOUT:
       return { ...state, loading: false };
+    case AuthTypes.SIGNUP_FAILED:
+    case AuthTypes.LOGIN_FAILED:
+    case AuthTypes.LOGOUT:
+      return { ...initialState, loading: false };
 
     // Default case: return the current state if action type is not recognized
     default:
