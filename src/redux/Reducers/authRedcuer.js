@@ -1,7 +1,6 @@
 import { AuthTypes } from "../action_types";
 
 const initialState = {
-  user: null,
   loading: false,
   isLoggedin: false,
   token: null,

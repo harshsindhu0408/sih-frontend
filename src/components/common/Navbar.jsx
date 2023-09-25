@@ -12,7 +12,6 @@ const Navbar = () => {
     // Dispatch the logout action
     dispatch(authLogout());
   };
-  console.log("logged in hai ->> ", state.isLoggedin);
 
   const Links = [
     { id: 1, name: "Resources", link: "/resources" },

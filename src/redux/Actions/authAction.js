@@ -74,7 +74,7 @@ export const authRegister = (user_data, navigate) => {
       });
 
       // Send a register request to the API
-      const response = await apiConnector({
+      await apiConnector({
         method: "POST",
         url: agencyEndPoints.REGISTER_API,
         body: user_data,

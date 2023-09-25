@@ -1,5 +1,3 @@
-// profileReducer.js
-
 import { ProfileTypes } from "../action_types";
 
 // Define the initial state for the profile

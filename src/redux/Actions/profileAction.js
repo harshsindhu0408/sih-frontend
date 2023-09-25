@@ -4,7 +4,7 @@ import { agencyEndPoints } from "../../services/api"; // Replace with your actua
 import { toast } from "react-toastify";
 
 // Action to request account information
-export const requestAccountInfo = () => {
+export const getAccountInfo = () => {
   return async (dispatch) => {
     try {
       // Dispatch the ACCOUNT_REQUEST action to indicate the request in progress
@@ -21,7 +21,7 @@ export const requestAccountInfo = () => {
       // Dispatch the ACCOUNT_SUCCESS action with the received account data
       dispatch({
         type: ProfileTypes.GET_ACCOUNT_SUCCESS,
-        payload: response.data, // You can modify this based on your API response structure
+        payload: response.agency, // You can modify this based on your API response structure
       });
     } catch (error) {
       // Handle API errors and show an error toast
