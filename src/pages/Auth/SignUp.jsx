@@ -61,7 +61,7 @@ const SignUp = () => {
   // navigate to home if user is logged
   useEffect(() => {
     if (authState.isLoggedin) {
-      navigate("/");
+      navigate("/login");
     }
   }, [authState.isLoggedin,navigate]);
 
@@ -314,21 +314,22 @@ const SignUp = () => {
               {!authState.loading ? (
                 <button
                   type="submit"
-                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="group relative w-full flex justify-center py-2 px-4 border
+                   border-transparent text-sm font-medium rounded-md text-white
+                    bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2
+                     focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200"
                 >
                   Sign up
                 </button>
               ) : (
-                <center>
-                  <b>Loading...</b>
-                </center>
+                <div className="spinner w-full flex items-center justify-center"></div>
               )}
             </div>
           </form>
         </div>
 
         {/* Right Section (Image) */}
-        <div className="lg:w-5/12  sm:w-full flex items-center justify-center">
+        <div className="lg:w-5/12  sm:hidden flex items-center justify-center">
           <img
             src={bgimg} // Replace with the actual image path
             alt="Agency"

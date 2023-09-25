@@ -36,20 +36,23 @@ const Profile = () => {
         </div>
 
         {/* top box with edit profile button div */}
-        <div className="w-full md:w-11/12 lg:w-7/12 xl:w-6/12 flex flex-col md:flex-row sm:flex-col items-center justify-between rounded-md border border-gray-300 bg-white p-6 md:p-8 shadow-md">
+        <div className="w-11/12 lg:w-8/12 xl:w-8/12 flex flex-col md:flex-row sm:flex-col md:items-center justify-between rounded-md border border-gray-300 bg-white p-6 md:p-8 shadow-md">
           {/* Name and email div */}
-          <div className="flex flex-col items-start justify-center gap-y-4">
+          <div className="flex flex-col items-start justify-center gap-y-2">
             <div className="font-semibold text-lg text-gray-700">
               Name: {agency.name}
             </div>
             <div className="font-semibold text-lg text-gray-700">
               Email: {agency.email}
             </div>
+            <div className="font-semibold text-lg text-gray-700">
+              Mobile: {agency.phoneNumber}
+            </div>
           </div>
 
           {/* Edit profile button section */}
           <div
-            className="flex flex-row gap-x-2 items-center mt-4 md:mt-0 justify-center text-white font-bold md:text-xl sm:text-xs sm:px-2 py-2
+            className="flex sm:w-full md:w-[200px] flex-row gap-x-2 items-center mt-4 md:mt-0 justify-center text-white font-bold md:text-xl sm:text-xs sm:px-2 py-2
             transition-all duration-200 border md:px-4 md:py-2 rounded-full bg-indigo-500 hover:bg-indigo-600"
           >
             <Link to={"/update-profile"}>
@@ -62,7 +65,7 @@ const Profile = () => {
         {/* Mid div Container for MapComponent */}
         <div className="w-full md:w-10/12 lg:w-9/12 xl:w-8/12 flex md:flex-row sm:flex-col gap-x-6 sm:gap-y-6 overflow-hidden items-center justify-center">
           {/* Address div */}
-          <div className="w-full md:w-1/2 border border-gray-300 shadow-md rounded-md p-6 md:p-10">
+          <div className="w-11/12  md:w-1/2 border border-gray-300 shadow-md rounded-md p-6 md:p-10">
             <p className="font-semibold text-lg text-gray-700">
               Where We Are Located
             </p>
@@ -85,7 +88,7 @@ const Profile = () => {
           </div>
 
           {/* Map div */}
-          <div className="w-full md:w-1/2 sm:w-full">
+          <div className="w-full md:w-1/2 sm:w-11/12 ">
             <MapComponent coordinates={coordinates} />
           </div>
         </div>

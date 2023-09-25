@@ -3,10 +3,12 @@ import bgimg from "../../assets/vecteezy_3d-male-character-happy-working-on-a-la
 import { useDispatch, useSelector } from "react-redux";
 import { updatePassword } from "../../redux/Actions/authAction"; // Import your updatePassword action
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const ChangePassword = () => {
   const state = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -29,6 +31,7 @@ const ChangePassword = () => {
     setOldPassword("");
     setNewPassword("");
     setConfirmNewPassword("");
+    navigate('/');
   };
 
   return (
