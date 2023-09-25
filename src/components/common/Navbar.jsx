@@ -8,7 +8,7 @@ const Navbar = () => {
   const state = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const isLoggedin=state.isLoggedin
+  const isLoggedin = state.isLoggedin;
 
   const handleLogout = () => {
     // Dispatch the logout action
@@ -28,9 +28,14 @@ const Navbar = () => {
       <div className="w-9/12 mr-20 flex flex-row items-center justify-between">
         {/* left part with name and logo */}
         <div className="flex flex-row items-center justify-center gap-2">
-          <Link className="flex flex-row items-center justify-center gap-2" to="/">
+          <Link
+            className="flex flex-row items-center justify-center gap-2"
+            to="/"
+          >
             <img src={logo} alt="logo" width="45px" />
-            <p className="text-2xl text-white font-Roberto font-bold">RescueConnect</p>
+            <p className="text-2xl text-white font-Roberto font-bold">
+              RescueConnect
+            </p>
           </Link>
         </div>
 
@@ -51,21 +56,31 @@ const Navbar = () => {
         </div>
 
         {/* right part with login and logout buttons */}
-        <div className="flex items-center justify-center gap-4">
-          {isLoggedin ? (
-            <button
-              className="bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24"
-              onClick={handleLogout}
-            >
-              Logout
+        <div className="flex flex-row items-center justify-center gap-4">
+          {/* Signup button */}
+          <Link to={'/signup'}>
+            <button className="bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24">
+              Sign Up
             </button>
-          ) : (
-            <NavLink to="/login" className="nav-link">
-              <button className="bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24">
-                Login
+          </Link>
+
+          {/* Login and Logout Button */}
+          <div>
+            {isLoggedin ? (
+              <button
+                className="bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24"
+                onClick={handleLogout}
+              >
+                Logout
               </button>
-            </NavLink>
-          )}
+            ) : (
+              <NavLink to="/login" className="nav-link">
+                <button className="bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24">
+                  Login
+                </button>
+              </NavLink>
+            )}
+          </div>
         </div>
       </div>
     </nav>

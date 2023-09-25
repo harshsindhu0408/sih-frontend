@@ -5,6 +5,7 @@ import MukeshPic from "../assets/team/mukesh.jpg";
 import SmritiPic from "../assets/team/smriti.jpg";
 import NeerajPic from '../assets/team/neeraj.jpg';
 import AdityaPic from '../assets/team/aditya.jpeg';
+import SanveevPic from "../assets/team/sanjeev.jpeg"
 
 const AboutUs = () => {
   const photos = [
@@ -21,7 +22,7 @@ const AboutUs = () => {
     {
       id: 3,
       name: "Sanjeev",
-      img: MukeshPic,
+      img: SanveevPic,
     },
     {
       id: 4,
