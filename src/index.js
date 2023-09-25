@@ -22,8 +22,9 @@ root.render(
       <BrowserRouter>
         <Navbar />
         <ToastContainer
-          position="top-right"
-          autoClose={5000}
+          position="top-center"
+          rounded={true}
+          autoClose={4000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick

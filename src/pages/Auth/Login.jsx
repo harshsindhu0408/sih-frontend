@@ -30,7 +30,7 @@ const Login = () => {
       <div className="w-11/12 flex flex-col items-center justify-center lg:flex-row xl:flex-row 2xl:flex-row sm:flex-col flex-wrap">
         {/* Left Section (Login Form) */}
         <div className="lg:w-7/12  sm:w-full p-8">
-          <h2 className="text-4xl overflow-hidden font-extrabold text-gray-900">
+          <h2 className="text-4xl xl:h-12 overflow-hidden font-extrabold text-gray-900">
             Login to Your Account
           </h2>
 
