@@ -54,14 +54,14 @@ const Navbar = () => {
         <div className="flex items-center justify-center gap-4">
           {isLoggedin ? (
             <button
-              className="bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-20"
+              className="bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24"
               onClick={handleLogout}
             >
               Logout
             </button>
           ) : (
             <NavLink to="/login" className="nav-link">
-              <button className="bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-20">
+              <button className="bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24">
                 Login
               </button>
             </NavLink>
