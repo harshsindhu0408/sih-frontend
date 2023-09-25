@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../../assets/logo.svg";
 import { Link, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,18 +8,16 @@ const Navbar = () => {
   const state = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const isLoggedin = state.isLoggedin;
-
   const handleLogout = () => {
     // Dispatch the logout action
     dispatch(authLogout());
   };
+  console.log("logged in hai ->> ", state.isLoggedin);
 
   const Links = [
     { id: 2, name: "Resources", link: "/resources" },
     { id: 3, name: "Disasters", link: "/disaster" },
     { id: 4, name: "Agencies", link: "/agencies" },
-    { id: 5, name: "Profile", link: "/profile" },
     { id: 6, name: "About Us", link: "/about" },
   ];
 
@@ -58,15 +56,28 @@ const Navbar = () => {
         {/* right part with login and logout buttons */}
         <div className="flex flex-row items-center justify-center gap-4">
           {/* Signup button */}
-          <Link to={'/signup'}>
-            <button className="bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24">
-              Sign Up
-            </button>
-          </Link>
+          {!state.isLoggedin && (
+            <NavLink to="/signup">
+              <button className="bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24">
+                Sign Up
+              </button>
+            </NavLink>
+          )}
+
+          {/* Profile button */}
+          {
+            state.isLoggedin && <div>
+              <NavLink to="/profile" className="nav-link">
+                <button className="bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24">
+                  Profile
+                </button>
+              </NavLink>
+            </div>
+          }
 
           {/* Login and Logout Button */}
           <div>
-            {isLoggedin ? (
+            {state.isLoggedin ? (
               <button
                 className="bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24"
                 onClick={handleLogout}
@@ -81,6 +92,7 @@ const Navbar = () => {
               </NavLink>
             )}
           </div>
+
         </div>
       </div>
     </nav>
