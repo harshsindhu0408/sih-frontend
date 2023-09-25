@@ -21,7 +21,12 @@ const MapComponent = ({ coordinates }) => {
     return () => map.remove();
   }, [coordinates]);
 
-  return <div ref={mapContainer} style={{ width: '100%', height: '400px' }} />;
+  return <div ref={mapContainer} style={{
+    width: '100%',
+    height: '300px',
+    border: '2px solid #ccc', // Example border style
+    borderRadius: '8px', // Example border radius
+  }} />;
 };
 
 export default MapComponent;
