@@ -23,7 +23,8 @@ root.render(
         <Navbar />
         <ToastContainer
           position="top-center"
-          autoClose={5000}
+          rounded={true}
+          autoClose={4000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick

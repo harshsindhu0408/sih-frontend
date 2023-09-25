@@ -23,24 +23,24 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="w-full z-10 bg-gray-800 relative h-20 flex items-center justify-center shadow-lg">
-      <div className="w-9/12 mr-20 flex flex-row items-center justify-between">
+    <nav className="w-full z-10 relative bg-gray-800 h-20 flex items-center justify-center shadow-lg">
+      <div className="w-11/12  flex flex-row items-center justify-between">
         {/* left part with name and logo */}
         <div className="flex flex-row items-center justify-center gap-2">
           <Link
             className="flex flex-row items-center justify-center gap-2"
             to="/"
           >
-            <img src={logo} alt="logo" width="45px" />
-            <p className="text-2xl text-white font-Roberto font-bold">
+            <img src={logo} alt="logo" width="45px" className="hidden md:block" />
+            <p className="md:text-2xl sm:text-xl text-white font-Roberto font-bold">
               RescueConnect
             </p>
           </Link>
         </div>
 
         {/* mid part with links */}
-        <div>
-          <ul className="flex items-center mr-13 justify-center gap-8">
+        <div className="hidden md:block">
+          <ul className="flex items-center justify-center gap-6">
             {Links.map((link) => (
               <li key={link.id}>
                 <Link
@@ -59,7 +59,7 @@ const Navbar = () => {
           {/* Signup button */}
           {!state.isLoggedin && (
             <NavLink to="/signup">
-              <button className="bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24">
+              <button className="bg-indigo-500 hover:bg-indigo-600 hover:scale-95 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24">
                 Sign Up
               </button>
             </NavLink>
@@ -69,7 +69,7 @@ const Navbar = () => {
           {
             state.isLoggedin && <div>
               <NavLink to="/profile" className="nav-link">
-                <button className="bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24">
+                <button className="bg-indigo-500 hover:bg-indigo-600 hover:scale-95 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24">
                   Profile
                 </button>
               </NavLink>
@@ -80,14 +80,14 @@ const Navbar = () => {
           <div>
             {state.isLoggedin ? (
               <button
-                className="bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24"
+                className="bg-indigo-500 hover:bg-indigo-600 hover:scale-95 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24"
                 onClick={handleLogout}
               >
                 Logout
               </button>
             ) : (
               <NavLink to="/login" className="nav-link">
-                <button className="bg-indigo-500 hover:bg-indigo-600 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24">
+                <button className="bg-indigo-500 hover:bg-indigo-600 hover:scale-95 block font-bold text-white shadow-sm rounded-full px-4 py-2 duration-300 w-24">
                   Login
                 </button>
               </NavLink>

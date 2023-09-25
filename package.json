@@ -27,11 +27,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thepranaygupta/react-tailwind-css-starter-pack.git"
+    "url": "git+https://github.com/harshsindhu0408/sih-frontend"
   },
-  "author": "Pranay Gupta",
+  "author": "Harsh",
   "bugs": {
-    "url": "https://github.com/thepranaygupta/react-tailwind-css-starter-pack/issues"
+    "url": "https://github.com/harshsindhu0408/sih-frontend"
   },
   "scripts": {
     "start": "react-scripts start",
