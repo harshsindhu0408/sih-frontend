@@ -12,7 +12,7 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(getAccountInfo());
-  }, []);
+  }, [dispatch]);
 
   if (state.loading || !agency) {
     return (

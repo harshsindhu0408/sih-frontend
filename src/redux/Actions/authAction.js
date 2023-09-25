@@ -95,7 +95,7 @@ export const updatePassword = (passwordData) => {
       });
 
       // Send a request to update the password (replace with your API endpoint)
-      const response = await apiConnector({
+      await apiConnector({
         method: "PUT",
         url: agencyEndPoints.UPDATE_PASSWORD_API, // Replace with the actual endpoint for updating the password
         body: passwordData,
