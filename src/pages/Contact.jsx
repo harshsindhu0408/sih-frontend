@@ -1,5 +1,32 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
+import emailjs from "@emailjs/browser";
+import { toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
+
 const Contact = () => {
+  const form = useRef();
+  const [done, setDone] = useState(false)
+  const navigate=useNavigate();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs.sendForm(
+        "service_0skg4qs",
+        "template_m1uxl0p",
+        form.current,
+        "CewSSi3qeC711XaSg"
+      )
+      .then((result) => {
+          console.log(result.text);
+          setDone(true);
+          toast.success("Message sent  successfully!");
+          navigate("/");
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
   return (
     <div className='maincontact'>
   <section id="page-header" className="about-header">
@@ -35,7 +62,7 @@ const Contact = () => {
     </div>
   </section>
   <section id="form-details">
-    <form action >
+    <form ref={form} onSubmit={sendEmail}>
       <span>LEAVE A MEASSAGE</span>
       <h2>We love to hear you</h2>
       <input type="text" placeholder="Your Good Name" name="user_name" />
