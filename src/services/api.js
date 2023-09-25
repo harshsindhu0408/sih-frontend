@@ -4,11 +4,11 @@ const BASE_URL = "http://localhost:8080/api/n1"
 export const agencyEndPoints = {
     REGISTER_API: BASE_URL + "/agency/register",
     LOGIN_API: BASE_URL + "/agency/login",
-    UPDATE_PASSWORD_API: BASE_URL + "/agency/updatePassword",
+    UPDATE_PASSWORD_API: BASE_URL + "/agency/updatepassword",
     GET_AGENCY_PROFILE: BASE_URL + "/agency/agencyProfile",
     UPDATE_AGENCY_INFO_API: BASE_URL + "/agency/updateAgency",
-    GET_AGENCY_RESOURCE_AND_DISASTER_API: BASE_URL + "/agency/getAllAgencyLocations/:id",
-    GET_ALL_AGENCY_LOCATIONS_API: BASE_URL + "/agency/getAgencyResourcesAndDisasters",
+    GET_AGENCY_RESOURCE_AND_DISASTER_API: BASE_URL + "/agency/getAgencyResourcesAndDisasters",
+    GET_ALL_AGENCY_LOCATIONS_API: BASE_URL + "/agency/agencyLocations",
     GET_ALL_AGENCY_DATA: BASE_URL + "/agency/agencyProfile",
 }
 

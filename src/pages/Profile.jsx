@@ -19,6 +19,7 @@ const Profile = () => {
       <div className="spinner w-full flex items-center justify-center"></div>
     );
   }
+  console.log(agency);
 
   const coordinates = [
     agency.location.coordinates[1],
