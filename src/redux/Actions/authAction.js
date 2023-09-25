@@ -48,22 +48,6 @@ export const authLogin = (user_data, navigate) => {
   };
 };
 
-// Action to handle user logout
-export const authLogout = () => {
-  return (dispatch) => {
-    // Remove the token from sessionStorage
-    sessionStorage.removeItem("_token");
-
-    // Dispatch the LOGOUT action to update the Redux store
-    dispatch({
-      type: AuthTypes.LOGOUT,
-    });
-
-    // Show a success toast
-    toast.success("Logged out");
-  };
-};
-
 // Action to handle user registration
 export const authRegister = (user_data, navigate) => {
   return async (dispatch) => {
@@ -99,5 +83,55 @@ export const authRegister = (user_data, navigate) => {
       // Handle API errors and show an error toast
       toast.error(error.response.data.message);
     }
+  };
+};
+
+export const updatePassword = (passwordData) => {
+  return async (dispatch) => {
+    try {
+      // Dispatch the UPDATE_PASSWORD_REQUEST action to indicate password update request in progress
+      dispatch({
+        type: AuthTypes.UPDATE_PASSWORD_REQUEST,
+      });
+
+      // Send a request to update the password (replace with your API endpoint)
+      const response = await apiConnector({
+        method: "PUT",
+        url: agencyEndPoints.UPDATE_PASSWORD_API, // Replace with the actual endpoint for updating the password
+        body: passwordData,
+      });
+
+      // Dispatch the UPDATE_PASSWORD_SUCCESS action to indicate successful password update
+      dispatch({
+        type: AuthTypes.UPDATE_PASSWORD_SUCCESS,
+      });
+
+      // Show a success toast
+      toast.success("Password updated successfully!");
+    } catch (error) {
+      // Dispatch the UPDATE_PASSWORD_FAILED action on error
+      dispatch({
+        type: AuthTypes.UPDATE_PASSWORD_FAILED,
+      });
+
+      // Handle API errors and show an error toast
+      toast.error(error.response.data.message);
+    }
+  };
+};
+
+// Action to handle user logout
+export const authLogout = () => {
+  return (dispatch) => {
+    // Remove the token from sessionStorage
+    sessionStorage.removeItem("_token");
+
+    // Dispatch the LOGOUT action to update the Redux store
+    dispatch({
+      type: AuthTypes.LOGOUT,
+    });
+
+    // Show a success toast
+    toast.success("Logged out");
   };
 };
