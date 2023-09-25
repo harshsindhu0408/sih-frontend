@@ -63,7 +63,7 @@ const SignUp = () => {
     if (authState.isLoggedin) {
       navigate("/");
     }
-  }, authState.isLoggedin);
+  }, [authState.isLoggedin]);
 
   // Handle form submission
   const handleSubmit = (e) => {

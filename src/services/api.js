@@ -1,10 +1,11 @@
-const BASE_URL = "http://localhost:8080/api/n1"
+const BASE_URL = "https://sih-five.vercel.app/api/n1"
 
 // AGENCY END POINTS
 export const agencyEndPoints = {
     REGISTER_API: BASE_URL + "/agency/register",
     LOGIN_API: BASE_URL + "/agency/login",
     UPDATE_PASSWORD_API: BASE_URL + "agency/updatePassword",
+    GET_AGENCY_PROFILE: BASE_URL + "agency/agencyProfile",
     UPDATE_AGENCY_INFO_API: BASE_URL + "agency/updateAgency",
     GET_AGENCY_RESOURCE_AND_DISASTER_API: BASE_URL + "agency/getAllAgencyLocations/:id",
     GET_ALL_AGENCY_LOCATIONS_API: BASE_URL + "agency/getAgencyResourcesAndDisasters",
