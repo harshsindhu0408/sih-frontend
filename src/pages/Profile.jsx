@@ -29,7 +29,6 @@ const Profile = () => {
   return (
     <div className="w-full flex flex-col mb-20 items-center justify-center h-full scroll-smooth bg-gray-100">
       <div className="w-full flex flex-col items-center gap-y-10 justify-center">
-
         {/* Titile */}
         <div className="text-4xl overflow-hidden mt-2 lg:text-4xl font-bold text-indigo-700 text-center">
           Welcome To {agency.name} Profile
@@ -51,15 +50,17 @@ const Profile = () => {
           </div>
 
           {/* Edit profile button section */}
-          <div
-            className="flex sm:w-full md:w-[200px] flex-row gap-x-2 items-center mt-4 md:mt-0 justify-center text-white font-bold overflow-hidden md:text-[14px] sm:text-xs sm:px-2 py-2
+          <Link to={"/update-profile"}>
+            <div
+              className="flex sm:w-full md:w-[200px] flex-row gap-x-2 items-center mt-4 md:mt-0 justify-center text-white font-bold overflow-hidden md:text-[14px] sm:text-xs sm:px-2 py-2
             transition-all duration-200 border md:px-4 md:py-2 rounded-full bg-indigo-500 hover:bg-indigo-600"
-          >
-            <Link to={"/update-profile"}>
-              <button className="text-white overflow-hidden">Update Profile</button>
-            </Link>
-            <FiEdit2 className="text-white" />
-          </div>
+            >
+              <button className="text-white overflow-hidden">
+                Update Profile
+              </button>
+              <FiEdit2 className="text-white" />
+            </div>
+          </Link>
         </div>
 
         {/* Mid div Container for MapComponent */}
@@ -76,15 +77,17 @@ const Profile = () => {
               <p>Country: {agency.contact.address.country}</p>
               <p>Postal Code: {agency.contact.address.postalCode}</p>
             </div>
-            <div
-              className="flex flex-row gap-x-2 items-center justify-center text-white font-bold md:text-[14px] sm:text-xs sm:px-2 py-2
+            <Link to={"/update-profile"}>
+              <div
+                className="flex flex-row gap-x-2 items-center justify-center text-white font-bold md:text-[14px] sm:text-xs sm:px-2 py-2
             transition-all duration-200 mt-4 border md:px-4 md:py-2 rounded-full bg-indigo-500 hover:bg-indigo-600"
-            >
-              <Link to={"/update-profile"}>
-                <button className="text-white overflow-hidden">Update Location</button>
-              </Link>
-              <FiEdit2 className="text-white" />
-            </div>
+              >
+                <button className="text-white overflow-hidden">
+                  Update Location
+                </button>
+                <FiEdit2 className="text-white" />
+              </div>
+            </Link>
           </div>
 
           {/* Map div */}

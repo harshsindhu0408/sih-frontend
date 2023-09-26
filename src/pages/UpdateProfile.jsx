@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import bgimg from "../assets/signup.png";
-import { authRegister } from "../redux/Actions/authAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateAccountInfo } from "../redux/Actions/profileAction";
