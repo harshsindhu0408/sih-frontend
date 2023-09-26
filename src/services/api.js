@@ -30,7 +30,7 @@ export const disasterEndPoints = {
   ADD_DISASTER_API: BASE_URL + "/disaster/addDisaster",
   UPDATE_DISASTER_API: BASE_URL + "/disaster/updateDisaster/:id",
   GET_DISASTER_API: BASE_URL + "/disaster/getDisaster/:id",
-  FETCH_ALL_DISASTERS_API: BASE_URL + "/disaster/fetchDisasters",
+  FETCH_ALL_DISASTERS_API: BASE_URL + "/disaster/allDisasters",
 };
 
 // ALERT END POINTS
