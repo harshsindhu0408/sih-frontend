@@ -16,6 +16,7 @@ import { AuthTypes } from "./redux/action_types";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import UpdateProfile from "./pages/UpdateProfile";
 import AgencyProfile from "./pages/AgencyProfile";
+import AddDisaster from "./components/AddDisaster";
 
 function PrivateRoute({ children }) {
   const isAuthenticated = useSelector((state) => state.auth.isLoggedin);
@@ -93,6 +94,14 @@ function App() {
           element={
             <PrivateRoute>
               <UpdateProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/addDisaster"
+          element={
+            <PrivateRoute>
+              <AddDisaster />
             </PrivateRoute>
           }
         />

@@ -1,67 +1,49 @@
 import React, { useState } from "react";
-import apiConnector from "../services/apiConnector";
-import { disasterEndPoints } from "../services/api";
+import { useDispatch } from "react-redux";
+import { createDisaster } from "../redux/Actions/disasterAction"; 
 import { useNavigate } from "react-router-dom";
 
 const AddDisaster = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [typeOfDisaster, setTypeOfDisaster] = useState("");
   const [severity, setSeverity] = useState("");
-  const [description, setDescription] = useState("");
+  const [status, setStatus] = useState("active"); // Default to 'active'
   const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [country, setCountry] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [description, setDescription] = useState("");
 
-  // Handle form submission
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Create the disaster data object
-    const newDisaster = {
+    const disasterData = {
       typeOfDisaster,
       severity,
-      description,
-      address: {
-        street,
-        city,
-        state,
-        postalCode,
-        country,
+      status,
+      contact: {
+        address: {
+          street,
+          city,
+          state,
+          postalCode,
+          country,
+        },
       },
-      location: [0, 0], // Set location as needed
+      description,
     };
 
-    try {
-      setLoading(true);
-
-      // Make a POST request to add a new disaster
-      await apiConnector({
-        method: "POST",
-        url: disasterEndPoints.ADD_DISASTER_API,
-        body: newDisaster,
-      });
-
-      setLoading(false);
-
-      // Navigate back to the list of disasters
-      navigate("/disasters");
-    } catch (error) {
-      setLoading(false);
-      // Handle error, e.g., show an error message
-      console.error(error);
-    }
+    // Dispatch the action to create a disaster
+    dispatch(createDisaster(disasterData, navigate));
   };
 
   return (
     <div className="flex flex-col items-center justify-center bg-gray-50 min-h-screen">
-      <div className="w-11/12 p-8">
-        <h2 className="text-3xl overflow-hidden font-extrabold text-gray-900">
-          Create a New Disaster
-        </h2>
+      <div className="w-11/12 lg:w-7/12 p-8">
+        <h2 className="text-3xl font-extrabold text-gray-900">Add Disaster</h2>
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {/* Type of Disaster */}
@@ -104,23 +86,24 @@ const AddDisaster = () => {
             </div>
           </div>
 
-          {/* Description */}
+          {/* Status */}
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
-              <label htmlFor="description" className="sr-only">
-                Description
+              <label htmlFor="status" className="sr-only">
+                Status
               </label>
-              <textarea
-                id="description"
-                name="description"
-                autoComplete="description"
+              <select
+                id="status"
+                name="status"
+                autoComplete="status"
                 required
-                rows="4"
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+              >
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
             </div>
           </div>
 
@@ -132,7 +115,7 @@ const AddDisaster = () => {
               </label>
               <input
                 id="street"
-                name="street"
+                name="contact.address.street"
                 type="text"
                 autoComplete="street"
                 required
@@ -152,7 +135,7 @@ const AddDisaster = () => {
               </label>
               <input
                 id="city"
-                name="city"
+                name="contact.address.city"
                 type="text"
                 autoComplete="city"
                 required
@@ -172,7 +155,7 @@ const AddDisaster = () => {
               </label>
               <input
                 id="state"
-                name="state"
+                name="contact.address.state"
                 type="text"
                 autoComplete="state"
                 required
@@ -192,7 +175,7 @@ const AddDisaster = () => {
               </label>
               <input
                 id="postalCode"
-                name="postalCode"
+                name="contact.address.postalCode"
                 type="text"
                 autoComplete="postalCode"
                 required
@@ -212,7 +195,7 @@ const AddDisaster = () => {
               </label>
               <input
                 id="country"
-                name="country"
+                name="contact.address.country"
                 type="text"
                 autoComplete="country"
                 required
@@ -224,21 +207,32 @@ const AddDisaster = () => {
             </div>
           </div>
 
+          {/* Description */}
+          <div className="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label htmlFor="description" className="sr-only">
+                Description
+              </label>
+              <textarea
+                id="description"
+                name="description"
+                autoComplete="description"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+          </div>
+
           {/* Submit Button */}
           <div>
-            {!loading ? (
-              <button
-                type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border
-                   border-transparent text-sm font-medium rounded-md text-white
-                    bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2
-                     focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200"
-              >
-                Create Disaster
-              </button>
-            ) : (
-              <div className="spinner w-full flex items-center justify-center"></div>
-            )}
+            <button
+              type="submit"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200"
+            >
+              Add Disaster
+            </button>
           </div>
         </form>
       </div>
