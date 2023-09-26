@@ -13,45 +13,41 @@ const AgencyProfile = () => {
     dispatch(getSpecificAgencyProfile(id));
   }, [dispatch, id]);
 
-  const agency = useSelector((state) => state.agencies.specificAgency);
+  const agencyData = useSelector((state) => state.agencies.specificAgency);
   const loggedInAgencyId = useSelector((state) => state.auth.user?.agencyId);
 
-  if (!agency) {
+  if (!agencyData) {
     return (
       <div className="spinner w-full flex items-center justify-center"></div>
     );
   }
 
+  const { agency, disasters } = agencyData;
+
   const coordinates = [
-    agency.agency.location?.coordinates[1],
-    agency.agency.location?.coordinates[0],
+    agency.location.coordinates[1],
+    agency.location.coordinates[0],
   ];
-  console.log(agency.agency.location, "bhau");
 
-  // console.log(agency.disasters, "agency");
-
-  const disasterCoordinates = agency.disasters.map((disaster) => {
-    [disaster.location.coordinates[1], disaster.location.coordinates[0]];
-  });
-  console.log(agency);
   const isEditable = loggedInAgencyId === id;
 
   return (
     <div className="w-full flex flex-col items-center justify-center h-full scroll-smooth bg-gray-100">
       <div className="w-full flex flex-col items-center gap-y-10 justify-center">
         <div className="text-4xl overflow-hidden mt-2 lg:text-4xl font-bold text-indigo-700 text-center">
-          Welcome To {agency.agency.name} Profile
+          Welcome To {agency.name} Profile
         </div>
+
         <div className="w-11/12 lg:w-8/12 xl:w-8/12 flex flex-col md:flex-row sm:flex-col md:items-center justify-between rounded-md border border-gray-300 bg-white p-6 md:p-8 shadow-md">
           <div className="flex flex-col items-start justify-center gap-y-2">
             <div className="lg:font-semibold bg-white sm:text-md lg:text-lg text-gray-700">
-              Name: {agency.agency.name}
+              Name: {agency.name}
             </div>
             <div className="lg:font-semibold sm:text-md lg:text-lg text-gray-700">
-              Email: {agency.agency.email}
+              Email: {agency.email}
             </div>
             <div className="lg:font-semibold sm:text-md lg:text-lg text-gray-700">
-              Mobile: {agency.agency.phoneNumber}
+              Mobile: {agency.phoneNumber}
             </div>
           </div>
           {isEditable && (
@@ -65,20 +61,18 @@ const AgencyProfile = () => {
             </Link>
           )}
         </div>
-        <div className="text-gray-800 sm:text-2xl md:text-5xl font-serif 2xl:h-16 underline overflow-hidden text-center font-bold">
-          Agency Location
-        </div>
+
         <div className="w-full md:w-10/12 lg:w-9/12 xl:w-8/12 flex md:flex-row sm:flex-col gap-x-6 sm:gap-y-6 overflow-hidden items-center justify-center">
           <div className="w-11/12 bg-white md:w-1/2 border md:h-72 border-gray-300 shadow-lg rounded-md p-6 md:p-10">
-            <p className="font-bold underline text-lg text-gray-700">
-              Agency Location
+            <p className="font-semibold text-lg text-gray-700">
+              Where We Are Located
             </p>
             <div className="text-gray-700 mt-2">
-              <p>Street: {agency.agency.contact.address.street}</p>
-              <p>City: {agency.agency.contact.address.city}</p>
-              <p>State: {agency.agency.contact.address.state}</p>
-              <p>Country: {agency.agency.contact.address.country}</p>
-              <p>Postal Code: {agency.agency.contact.address.postalCode}</p>
+              <p>Street: {agency.contact.address.street}</p>
+              <p>City: {agency.contact.address.city}</p>
+              <p>State: {agency.contact.address.state}</p>
+              <p>Country: {agency.contact.address.country}</p>
+              <p>Postal Code: {agency.contact.address.postalCode}</p>
             </div>
             {isEditable && (
               <Link to={`/update-agency-location/${id}`}>
@@ -98,62 +92,42 @@ const AgencyProfile = () => {
             />
           </div>
         </div>
-        <div className="text-gray-800 sm:text-2xl md:text-5xl font-serif 2xl:h-16 underline overflow-hidden text-center font-bold">
-          Disasters
-        </div>
-        <div className="w-full md:w-10/12 lg:w-9/12 xl:w-8/12 flex md:flex-row sm:flex-col gap-x-6 sm:gap-y-6 overflow-hidden items-center justify-center">
-          <div className="w-full bg-white border md:h-72 border-gray-300 shadow-lg rounded-md p-6 md:p-10">
-            {agency.disasters.map((disaster, index) => (
-              <div
-                key={index}
-                className="flex justify-between bg-white border border-gray-300 shadow-lg rounded-md p-6 md:p-10 mb-6"
-              >
+
+        <div className="w-11/12 lg:w-9/12 mt-8">
+          <h2 className="text-2xl font-semibold text-indigo-700">
+            Disasters List
+          </h2>
+          {/* Disaster info div */}
+          <div>
+            {disasters.map((disaster) => (
+              <div key={disaster._id} className="p-4 border border-gray-300 rounded-md shadow-md bg-white">
                 <div>
-                  <p className="font-bold underline text-lg text-gray-700">
-                    Disaster Description
+                  <h3 className="text-lg font-semibold text-indigo-700">
+                    {disaster.typeOfDisaster}
+                  </h3>
+                  <p className="text-gray-700">Severity: {disaster.severity}</p>
+                  <p className="text-gray-700">
+                    Description: {disaster.description}
                   </p>
-                  <div className="text-gray-700 mt-2">
-                    <p>Name of Disaster: {disaster.typeOfDisaster}</p>
-                    <p>Status: {disaster.status}</p>
-                    <p>Severity: {disaster.severity}</p>
-                    <p>
-                      {disaster.contact ? (
-                        <React.Fragment>
-                          <p>Street: {disaster.contact.address?.street}</p>
-                          <p>City: {disaster.contact.address?.city}</p>
-                          <p>State: {disaster.contact.address?.state}</p>
-                          <p>Country: {disaster.contact.address?.country}</p>
-                        </React.Fragment>
-                      ) : (
-                        "Address information not available"
-                      )}
-                    </p>
-                    <p>Description: {disaster.description}</p>
-                  </div>
+                  <p className="text-gray-700">
+                    Location: {disaster.contact.address.city},{" "}
+                    {disaster.contact.address.state},{" "}
+                    {disaster.contact.address.country}
+                  </p>
+                  <p className="text-gray-700">Status: {disaster.status}</p>
                 </div>
 
-                <div className="w-full md:w-1/2 sm:w-11/12">
-                  {disaster.location(
-                    <MapComponent
-                      coordinates={[
-                        disaster.location.coordinates[1], // latitude for this disaster
-                        disaster.location.coordinates[0], // longitude for this disaster
-                      ]}
-                    />
-                  )}
+                <div>
+                  <MapComponent
+                    coordinates={[
+                      disaster.location.coordinates[1],
+                      disaster.location.coordinates[0],
+                    ]}
+                    className="w-full h-full"
+                  />
                 </div>
               </div>
             ))}
-            {/* <div className="text-gray-700 mt-2">
-              <p>Name of Disaster: {agency.disasters[0].typeOfDisaster}</p>
-              <p>Status: {agency.disasters[0].status}</p>
-              <p>Severity: {agency.disasters[0].severity}</p>
-              <p>
-                Address:
-                {`${agency.disasters[0].contact.address.street},${agency.disasters[0].contact.address.city},${agency.disasters[0].contact.address.state},${agency.disasters[0].contact.address.country}`}
-              </p>
-              <p>Description: {agency.disasters[0].description}</p>
-            </div> */}
           </div>
         </div>
       </div>
