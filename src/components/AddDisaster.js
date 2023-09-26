@@ -16,16 +16,14 @@ const AddDisaster = () => {
   const [postalCode, setPostalCode] = useState("");
   const [country, setCountry] = useState("");
   const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("Active");
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Create the disaster data object
-    const newDisaster = {
-      typeOfDisaster,
-      severity,
-      description,
+    const contactData = {
       address: {
         street,
         city,
@@ -33,6 +31,13 @@ const AddDisaster = () => {
         postalCode,
         country,
       },
+    };
+    const newDisaster = {
+      typeOfDisaster,
+      severity,
+      status,
+      contact: contactData,
+      description,
     };
 
     try {
@@ -104,7 +109,7 @@ const AddDisaster = () => {
                 autoComplete="severity"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Severity"
+                placeholder="Severity (High / Low)"
                 value={severity}
                 onChange={(e) => setSeverity(e.target.value)}
               />
