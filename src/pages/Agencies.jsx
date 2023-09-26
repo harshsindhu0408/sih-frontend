@@ -12,7 +12,6 @@ const Agencies = () => {
   }, [dispatch]);
   
   const temp = agencies.allAgencies.agency;
-  console.log("temp data -> ", temp);
   if (agencies.loading || !temp) {
     return <div className="spinner w-full flex items-center justify-center"></div>;
   }
