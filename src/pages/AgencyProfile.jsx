@@ -94,13 +94,16 @@ const AgencyProfile = () => {
         </div>
 
         <div className="w-11/12 lg:w-9/12 mt-8">
-          <h2 className="text-2xl font-semibold text-indigo-700">
+          <h2 className="text-2xl text-center font-bold  text-indigo-700">
             Disasters List
           </h2>
           {/* Disaster info div */}
           <div>
             {disasters.map((disaster) => (
-              <div key={disaster._id} className="p-4 border border-gray-300 rounded-md shadow-md bg-white">
+              <div
+                key={disaster._id}
+                className="p-4 border border-gray-300 rounded-md shadow-md bg-white"
+              >
                 <div>
                   <h3 className="text-lg font-semibold text-indigo-700">
                     {disaster.typeOfDisaster}
