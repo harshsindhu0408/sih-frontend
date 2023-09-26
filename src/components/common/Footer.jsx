@@ -72,17 +72,17 @@ const Footer = () => {
         <div>
           <ul className="flex space-x-4">
             <li>
-              <a style={iconStyle} href="#">
+              <a style={iconStyle} href="/">
                 <FontAwesomeIcon icon={faGithub} />
               </a>
             </li>
             <li>
-              <a style={iconStyle} href="#">
+              <a style={iconStyle} href="/">
                 <FontAwesomeIcon icon={faLinkedin} />
               </a>
             </li>
             <li>
-              <a style={iconStyle} href="#">
+              <a style={iconStyle} href="/">
                 <FontAwesomeIcon icon={faTwitter} />
               </a>
             </li>
