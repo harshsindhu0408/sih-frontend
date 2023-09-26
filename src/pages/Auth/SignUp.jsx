@@ -329,7 +329,7 @@ const SignUp = () => {
         </div>
 
         {/* Right Section (Image) */}
-        <div className="lg:w-5/12  sm:hidden flex items-center justify-center">
+        <div className="lg:w-5/12  sm:hidden md:block flex items-center justify-center">
           <img
             src={bgimg} // Replace with the actual image path
             alt="Agency"

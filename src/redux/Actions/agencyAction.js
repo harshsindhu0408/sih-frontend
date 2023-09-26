@@ -45,18 +45,18 @@ export const getAllAgencies = () => {
         method: "GET",
         url: agencyEndPoints.GET_ALL_AGENCIES,
       });
-
+      console.log("Response data ->", response);
       // Dispatch the GET_ALL_AGENCIES_SUCCESS action with the received agency data
       dispatch({
         type: AgencyTypes.GET_ALL_AGENCIES_SUCCESS,
-        payload: response.data, // Modify this based on your API response structure
+        payload: response, // Modify this based on your API response structure
       });
     } catch (error) {
       // Dispatch the GET_ALL_AGENCIES_FAILURE action on error
       dispatch({ type: AgencyTypes.GET_ALL_AGENCIES_FAILURE });
 
       // Handle API errors and show an error toast
-      toast.error(error.response.data.message);
+      toast.error(error.response.message);
     }
   };
 };
