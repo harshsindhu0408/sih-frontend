@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import apiConnector from "../services/apiConnector";
 import { disasterEndPoints } from "../services/api";
 import { toast } from "react-toastify"; // Import toast from react-toastify
-import AddDisasterModal from "../components/AddDisaster"; // Import the modal component
+import { Link } from "react-router-dom";
 
 const Disasters = () => {
   const [disasters, setDisasters] = useState([]);
   const [loading, setLoading] = useState(true); // Initialize loading state as true
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,23 +31,14 @@ const Disasters = () => {
     fetchData();
   }, []);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  // Function to close the modal
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
 
   return (
     <div>
-      <button
-        onClick={openModal}
-        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full"
-      >
-        Add Disaster
-      </button>
+      <div>
+        <Link to={'/addDisaster'}>
+          <button className="px-4 py-2">Add Disaster</button>
+        </Link>
+      </div>
       {loading ? (
         // Display the loading spinner while loading
         <div className="w-full flex items-center justify-center mt-16">
@@ -88,11 +78,6 @@ const Disasters = () => {
           </div>
         </div>
       )}
-      {/* AddDisasterModal component */}
-      <AddDisasterModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-      />
     </div>
   );
 };
