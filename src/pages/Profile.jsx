@@ -66,7 +66,7 @@ const Profile = () => {
         {/* Mid div Container for MapComponent */}
         <div className="w-full md:w-10/12 lg:w-9/12 xl:w-8/12 flex md:flex-row sm:flex-col gap-x-6 sm:gap-y-6 overflow-hidden items-center justify-center">
           {/* Address div */}
-          <div className="w-11/12 bg-white md:w-1/2 border border-gray-300 shadow-lg rounded-md p-6 md:p-10">
+          <div className="w-11/12 bg-white md:w-1/2 border border-gray-300 shadow-lg rounded-md p-6 md:p-11">
             <p className="font-semibold text-lg text-gray-700">
               Where We Are Located
             </p>

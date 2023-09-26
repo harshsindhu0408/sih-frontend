@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AuthTypes } from "./redux/action_types";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import UpdateProfile from "./pages/UpdateProfile";
+import AgencyProfile from "./pages/AgencyProfile";
 
 function PrivateRoute({ children }) {
   const isAuthenticated = useSelector((state) => state.auth.isLoggedin);
@@ -40,7 +41,6 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        
         <Route
           path="/agencies"
           element={
@@ -49,7 +49,14 @@ function App() {
             </PrivateRoute>
           }
         />
-        
+        <Route
+          path="/agency-profile/:id"
+          element={
+            <PrivateRoute>
+              <AgencyProfile />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/disaster"
           element={
@@ -58,7 +65,6 @@ function App() {
             </PrivateRoute>
           }
         />
-        
         <Route
           path="/resources"
           element={
@@ -67,15 +73,13 @@ function App() {
             </PrivateRoute>
           }
         />
-        
-        <Route path="/about" element={<AboutUs />} /> {/* This is now an open route */}
-        
+        <Route path="/about" element={<AboutUs />} />{" "}
+        {/* This is now an open route */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-
         <Route
           path="/profile"
           element={
@@ -84,7 +88,6 @@ function App() {
             </PrivateRoute>
           }
         />
-
         <Route
           path="/update-profile"
           element={

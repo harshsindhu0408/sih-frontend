@@ -10,7 +10,7 @@ export const agencyEndPoints = {
   GET_AGENCY_RESOURCE_AND_DISASTER_API:
     BASE_URL + "/agency/getAgencyResourcesAndDisasters",
   GET_ALL_AGENCY_LOCATIONS_API: BASE_URL + "/agency/agencyLocations",
-  GET_SPECIFIC_AGENCY_PROFILE: BASE_URL + "/agency/findAgency/:id",
+  GET_SPECIFIC_AGENCY_PROFILE: BASE_URL + "/agency/findAgency",
   GET_ALL_AGENCIES: BASE_URL + "/agency/findAllAgencies",
 };
 
