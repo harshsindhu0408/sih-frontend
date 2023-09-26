@@ -31,7 +31,7 @@ export const getAccountInfo = () => {
 };
 
 // Action to update account information
-export const updateAccountInfo = (updatedInfo) => {
+export const updateAccountInfo = (updatedInfo,navigate) => {
   return async (dispatch) => {
     try {
       // Dispatch the ACCOUNT_REQUEST action to indicate the request in progress
@@ -54,6 +54,7 @@ export const updateAccountInfo = (updatedInfo) => {
 
       // Show a success toast
       toast.success("Account information updated successfully!");
+      navigate('/profile')
     } catch (error) {
       // Handle API errors and show an error toast
       toast.error(error.response.data.message);

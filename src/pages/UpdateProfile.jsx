@@ -6,7 +6,7 @@ import { updateAccountInfo } from "../redux/Actions/profileAction";
 
 const UpdateProfile = () => {
 
-  const authState = useSelector((state) => state.auth);
+  const currentState = useSelector((state) => state.profile);
   const agency = useSelector((state) => state.profile.accountInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -95,8 +95,7 @@ const UpdateProfile = () => {
       phoneNumber,
       expertise,
     };
-    dispatch(updateAccountInfo(user_data));
-    navigate('/');
+    dispatch(updateAccountInfo(user_data,navigate));
   };
 
   return (
@@ -296,7 +295,7 @@ const UpdateProfile = () => {
 
             {/* Submit Button */}
             <div>
-              {!authState.loading ? (
+              {!currentState.loading ? (
                 <button
                   type="submit"
                   className="group relative w-full flex justify-center py-2 px-4 border
