@@ -27,8 +27,8 @@ const Profile = () => {
   ];
 
   return (
-    <div className="w-full flex flex-col mb-20 items-center justify-center h-full scroll-smooth bg-gray-100">
-      <div className="w-full flex flex-col items-center gap-y-10 justify-center">
+    <div className="w-full flex flex-col mb-20 items-center justify-center h-full scroll-smooth">
+      <div className="w-full flex flex-col items-center gap-y-10 justify-center p-6">
         {/* Titile */}
         <div className="text-4xl overflow-hidden mt-2 lg:text-4xl font-bold text-indigo-700 text-center">
           Welcome To {agency.name} Profile
