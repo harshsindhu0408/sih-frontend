@@ -18,7 +18,8 @@ const Agencies = () => {
   }
 
   return (
-    <div>
+    <div className='w-full bg-gray-100 flex items-center gap-y-20 justify-center'>
+      <div className='w-11/12'>
       {temp.map((agency) => (
         <AgencyComponent
           key={agency._id} // Assuming _id is the unique identifier for each agency
@@ -29,6 +30,7 @@ const Agencies = () => {
           ]}
         />
       ))}
+      </div>
     </div>
   );
 };

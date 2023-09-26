@@ -21,8 +21,9 @@ export const getSpecificAgencyProfile = (agencyId) => {
       // Dispatch the GET_SPECIFIC_AGENCY_SUCCESS action with the received agency data
       dispatch({
         type: AgencyTypes.GET_SPECIFIC_AGENCY_SUCCESS,
-        payload: response.data, // Modify this based on your API response structure
+        payload: response, // Modify this based on your API response structure
       });
+      console.log("response ->>>>>>>>>>>", response);
     } catch (error) {
       // Dispatch the GET_SPECIFIC_AGENCY_FAILURE action on error
       dispatch({ type: AgencyTypes.GET_SPECIFIC_AGENCY_FAILURE });
