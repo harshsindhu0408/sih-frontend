@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import apiConnector from "../services/apiConnector";
 import { disasterEndPoints } from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AddDisaster = () => {
   const navigate = useNavigate();
@@ -32,14 +33,13 @@ const AddDisaster = () => {
         postalCode,
         country,
       },
-      location: [0, 0], // Set location as needed
     };
 
     try {
       setLoading(true);
 
       // Make a POST request to add a new disaster
-      await apiConnector({
+      const response = await apiConnector({
         method: "POST",
         url: disasterEndPoints.ADD_DISASTER_API,
         body: newDisaster,
@@ -47,12 +47,19 @@ const AddDisaster = () => {
 
       setLoading(false);
 
-      // Navigate back to the list of disasters
-      navigate("/disasters");
+      // Check the response status and show a toast accordingly
+      if (response.status === "success") {
+        toast.success("Disaster created successfully");
+        // Navigate back to the list of disasters
+        navigate("/disasters");
+      } else {
+        toast.error("Error creating disaster");
+      }
     } catch (error) {
       setLoading(false);
+      toast.error(error.response.data.message);
       // Handle error, e.g., show an error message
-      console.error(error);
+      console.error(error.response);
     }
   };
 
