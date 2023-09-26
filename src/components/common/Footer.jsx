@@ -15,74 +15,84 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-800 relative text-white shadow-lg py-6">
-      <div className="w-11/12 container mx-auto flex flex-col lg:flex-row justify-between items-center">
-
-        {/* left div with logo and name */}
-        <div className="flex flex-row items-start justify-center">
-          <div className="md:flex flex-row items-start justify-start sm:hidden">
-            <img src={logo} alt="logo" width="60px" />
-          </div>
-          <div className="text-lg mb-4 md:mb-0 text-center md:text-left">
-            <Link to={'/'}>
-            <div className="md:text-4xl sm:text-2xl font-bold overflow-hidden ml-2">
+    <footer className="bg-gray-800 text-white shadow-lg py-6">
+      <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center">
+        {/* Logo and Name */}
+        <div className="flex items-center justify-center lg:justify-start">
+          <img src={logo} alt="logo" width="60px" className="hidden sm:block" />
+          <div className="text-xl md:text-4xl font-bold ml-2">
+            <Link to={"/"} className="text-blue-400 hover:text-blue-600">
               RescueConnect
-            </div>
             </Link>
-            <p className="md:w-[400px] ml-2 mt-4 opacity-90 sm:text-sm">
-              We Rescue the people in Need with unwavering dedication, providing
-              assistance, hope, and support during times of crisis, ensuring a
-              safer and more resilient world for all
-            </p>
           </div>
         </div>
 
-        {/* Central div with links */}
-        <div className="flex flex-row gap-x-16 mt-2 mb-2 items-center justify-center">
-          <div>
-            <ul className="space-y-2 md:font-bold  font-Roborto">
-              <li>
-                <Link to="/disaster">Disasters</Link>
-              </li>
-              <li>
-                <Link to="/resources">Resources</Link>
-              </li>
-              <li>
-                <Link to="/about">About Us</Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <ul className="space-y-2 md:font-bold  font-Roborto">
-              <li>
-                <Link to="/profile">Profile</Link>
-              </li>
-              <li>
-                <Link to="/agencies">Agencies</Link>
-              </li>
-              <li>
-                <Link to="/privacy-policy">Privacy ploicy</Link>
-              </li>
-            </ul>
-          </div>
+        {/* Navigation Links */}
+        <div className="flex mt-2 lg:mt-0">
+          <ul className="space-x-6 md:font-bold font-Roborto flex flex-wrap">
+            <li>
+              <Link to="/disaster" className="text-gray-400 hover:text-white">
+                Disasters
+              </Link>
+            </li>
+            <li>
+              <Link to="/resources" className="text-gray-400 hover:text-white">
+                Resources
+              </Link>
+            </li>
+            <li>
+              <Link to="/about" className="text-gray-400 hover:text-white">
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link to="/profile" className="text-gray-400 hover:text-white">
+                Profile
+              </Link>
+            </li>
+            <li>
+              <Link to="/agencies" className="text-gray-400 hover:text-white">
+                Agencies
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/privacy-policy"
+                className="text-gray-400 hover:text-white"
+              >
+                Privacy Policy
+              </Link>
+            </li>
+          </ul>
         </div>
 
-        {/* Rightmost div with icons */}
-        <div>
+        {/* Social Icons */}
+        <div className="mt-4 lg:mt-0">
           <ul className="flex space-x-4">
             <li>
-              <a style={iconStyle} href="/">
+              <a
+                style={iconStyle}
+                href="/"
+                className="text-gray-400 hover:text-white"
+              >
                 <FontAwesomeIcon icon={faGithub} />
               </a>
             </li>
             <li>
-              <a style={iconStyle} href="/">
+              <a
+                style={iconStyle}
+                href="/"
+                className="text-gray-400 hover:text-white"
+              >
                 <FontAwesomeIcon icon={faLinkedin} />
               </a>
             </li>
             <li>
-              <a style={iconStyle} href="/">
+              <a
+                style={iconStyle}
+                href="/"
+                className="text-gray-400 hover:text-white"
+              >
                 <FontAwesomeIcon icon={faTwitter} />
               </a>
             </li>

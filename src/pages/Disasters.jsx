@@ -18,9 +18,6 @@ const Disasters = () => {
           url: disasterEndPoints.FETCH_ALL_DISASTERS_API,
         });
 
-        // Display a success toast
-        toast.success("Disasters fetched successfully");
-
         // Update the state with the data
         setDisasters(response.disasters);
         setLoading(false); // Set loading state to false once data is loaded
