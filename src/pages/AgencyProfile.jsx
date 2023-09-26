@@ -18,15 +18,22 @@ const AgencyProfile = () => {
 
   if (!agency) {
     return (
-        <div className="spinner w-full flex items-center justify-center"></div>
+      <div className="spinner w-full flex items-center justify-center"></div>
     );
   }
 
   const coordinates = [
-    agency.agency.location.coordinates[1],
-    agency.agency.location.coordinates[0],
+    agency.agency.location?.coordinates[1],
+    agency.agency.location?.coordinates[0],
   ];
+  console.log(agency.agency.location, "bhau");
 
+  // console.log(agency.disasters, "agency");
+
+  const disasterCoordinates = agency.disasters.map((disaster) => {
+    [disaster.location.coordinates[1], disaster.location.coordinates[0]];
+  });
+  console.log(agency);
   const isEditable = loggedInAgencyId === id;
 
   return (
@@ -50,15 +57,22 @@ const AgencyProfile = () => {
           {isEditable && (
             <Link to={`/update-agency/${id}`}>
               <div className="flex sm:w-full md:w-[200px] flex-row gap-x-2 items-center mt-4 md:mt-0 justify-center text-white font-bold overflow-hidden md:text-[14px] sm:text-xs sm:px-2 py-2 transition-all duration-200 border md:px-4 md:py-2 rounded-full bg-indigo-500 hover:bg-indigo-600">
-                <button className="text-white overflow-hidden">Update Profile</button>
+                <button className="text-white overflow-hidden">
+                  Update Profile
+                </button>
                 <FiEdit2 className="text-white" />
               </div>
             </Link>
           )}
         </div>
+        <div className="text-gray-800 sm:text-2xl md:text-5xl font-serif 2xl:h-16 underline overflow-hidden text-center font-bold">
+          Agency Location
+        </div>
         <div className="w-full md:w-10/12 lg:w-9/12 xl:w-8/12 flex md:flex-row sm:flex-col gap-x-6 sm:gap-y-6 overflow-hidden items-center justify-center">
           <div className="w-11/12 bg-white md:w-1/2 border md:h-72 border-gray-300 shadow-lg rounded-md p-6 md:p-10">
-            <p className="font-semibold text-lg text-gray-700">Where We Are Located</p>
+            <p className="font-bold underline text-lg text-gray-700">
+              Agency Location
+            </p>
             <div className="text-gray-700 mt-2">
               <p>Street: {agency.agency.contact.address.street}</p>
               <p>City: {agency.agency.contact.address.city}</p>
@@ -69,14 +83,77 @@ const AgencyProfile = () => {
             {isEditable && (
               <Link to={`/update-agency-location/${id}`}>
                 <div className="flex flex-row gap-x-2 items-center justify-center text-white font-bold md:text-[14px] sm:text-xs sm:px-2 py-2 transition-all duration-200 mt-4 border md:px-4 md:py-2 rounded-full bg-indigo-500 hover:bg-indigo-600">
-                  <button className="text-white overflow-hidden">Update Location</button>
+                  <button className="text-white overflow-hidden">
+                    Update Location
+                  </button>
                   <FiEdit2 className="text-white" />
                 </div>
               </Link>
             )}
           </div>
           <div className="w-full md:w-1/2 sm:w-11/12">
-            <MapComponent coordinates={coordinates} className="w-full h-72 md:h-auto md:w-full rounded-lg shadow-md" />
+            <MapComponent
+              coordinates={coordinates}
+              className="w-full h-72 md:h-auto md:w-full rounded-lg shadow-md"
+            />
+          </div>
+        </div>
+        <div className="text-gray-800 sm:text-2xl md:text-5xl font-serif 2xl:h-16 underline overflow-hidden text-center font-bold">
+          Disasters
+        </div>
+        <div className="w-full md:w-10/12 lg:w-9/12 xl:w-8/12 flex md:flex-row sm:flex-col gap-x-6 sm:gap-y-6 overflow-hidden items-center justify-center">
+          <div className="w-full bg-white border md:h-72 border-gray-300 shadow-lg rounded-md p-6 md:p-10">
+            {agency.disasters.map((disaster, index) => (
+              <div
+                key={index}
+                className="flex justify-between bg-white border border-gray-300 shadow-lg rounded-md p-6 md:p-10 mb-6"
+              >
+                <div>
+                  <p className="font-bold underline text-lg text-gray-700">
+                    Disaster Description
+                  </p>
+                  <div className="text-gray-700 mt-2">
+                    <p>Name of Disaster: {disaster.typeOfDisaster}</p>
+                    <p>Status: {disaster.status}</p>
+                    <p>Severity: {disaster.severity}</p>
+                    <p>
+                      {disaster.contact ? (
+                        <React.Fragment>
+                          <p>Street: {disaster.contact.address?.street}</p>
+                          <p>City: {disaster.contact.address?.city}</p>
+                          <p>State: {disaster.contact.address?.state}</p>
+                          <p>Country: {disaster.contact.address?.country}</p>
+                        </React.Fragment>
+                      ) : (
+                        "Address information not available"
+                      )}
+                    </p>
+                    <p>Description: {disaster.description}</p>
+                  </div>
+                </div>
+
+                <div className="w-full md:w-1/2 sm:w-11/12">
+                  {disaster.location(
+                    <MapComponent
+                      coordinates={[
+                        disaster.location.coordinates[1], // latitude for this disaster
+                        disaster.location.coordinates[0], // longitude for this disaster
+                      ]}
+                    />
+                  )}
+                </div>
+              </div>
+            ))}
+            {/* <div className="text-gray-700 mt-2">
+              <p>Name of Disaster: {agency.disasters[0].typeOfDisaster}</p>
+              <p>Status: {agency.disasters[0].status}</p>
+              <p>Severity: {agency.disasters[0].severity}</p>
+              <p>
+                Address:
+                {`${agency.disasters[0].contact.address.street},${agency.disasters[0].contact.address.city},${agency.disasters[0].contact.address.state},${agency.disasters[0].contact.address.country}`}
+              </p>
+              <p>Description: {agency.disasters[0].description}</p>
+            </div> */}
           </div>
         </div>
       </div>
