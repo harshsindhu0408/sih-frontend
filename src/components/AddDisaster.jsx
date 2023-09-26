@@ -91,13 +91,9 @@ const AddDisaster = () => {
       setLoading(false);
 
       // Check the response status and show a toast accordingly
-      if (response.status === "success") {
-        toast.success("Disaster created successfully");
-        // Navigate back to the list of disasters
-        navigate("/disasters");
-      } else {
-        toast.error("Error creating disaster");
-      }
+      toast.success("Disaster created successfully");
+      // Navigate back to the list of disasters
+      navigate("/disasters");
     } catch (error) {
       setLoading(false);
       toast.error(error.response.data.message);
@@ -236,28 +232,28 @@ const AddDisaster = () => {
 
           {/* State */}
           <div className="rounded-md shadow-sm -space-y-px">
-              <div>
-                <label htmlFor="state" className="sr-only">
-                  State
-                </label>
-                <select
-                  id="state"
-                  name="contact.address.state" // Use nested structure
-                  autoComplete="state"
-                  required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  onChange={(e) => setState(e.target.value)}
-                  value={state}
-                >
-                  <option value="">Select State</option>
-                  {statesOfIndia.map((stateName) => (
-                    <option key={stateName} value={stateName}>
-                      {stateName}
-                    </option>
-                  ))}
-                </select>
-              </div>
+            <div>
+              <label htmlFor="state" className="sr-only">
+                State
+              </label>
+              <select
+                id="state"
+                name="contact.address.state" // Use nested structure
+                autoComplete="state"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                onChange={(e) => setState(e.target.value)}
+                value={state}
+              >
+                <option value="">Select State</option>
+                {statesOfIndia.map((stateName) => (
+                  <option key={stateName} value={stateName}>
+                    {stateName}
+                  </option>
+                ))}
+              </select>
             </div>
+          </div>
 
           {/* Postal Code */}
           <div className="rounded-md shadow-sm -space-y-px">

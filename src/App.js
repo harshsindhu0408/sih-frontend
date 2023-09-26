@@ -59,7 +59,7 @@ function App() {
           }
         />
         <Route
-          path="/disaster"
+          path="/disasters"
           element={
             <PrivateRoute>
               <Disasters />

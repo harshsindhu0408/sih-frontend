@@ -42,7 +42,7 @@ const Footer = () => {
           <div>
             <ul className="space-y-2 md:font-bold  font-Roborto">
               <li>
-                <Link to="/disaster">Disasters</Link>
+                <Link to="/disasters">Disasters</Link>
               </li>
               <li>
                 <Link to="/resources">Resources</Link>
