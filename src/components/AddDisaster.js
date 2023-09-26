@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 
 const AddDisaster = () => {
   const navigate = useNavigate();
-
   const [typeOfDisaster, setTypeOfDisaster] = useState("");
   const [severity, setSeverity] = useState("");
   const [description, setDescription] = useState("");
@@ -16,7 +15,45 @@ const AddDisaster = () => {
   const [postalCode, setPostalCode] = useState("");
   const [country, setCountry] = useState("");
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState("Active");
+  const [status, setStatus] = useState("");
+
+  const statesOfIndia = [
+    "Andaman and Nicobar Islands",
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chandigarh",
+    "Chhattisgarh",
+    "Dadra and Nagar Haveli and Daman and Diu",
+    "Delhi",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jammu and Kashmir",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Lakshadweep",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Puducherry",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal",
+  ];
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -39,6 +76,7 @@ const AddDisaster = () => {
       contact: contactData,
       description,
     };
+    console.log("New Disaster Data:", newDisaster);
 
     try {
       setLoading(true);
@@ -92,6 +130,26 @@ const AddDisaster = () => {
                 placeholder="Type of Disaster"
                 value={typeOfDisaster}
                 onChange={(e) => setTypeOfDisaster(e.target.value)}
+              />
+            </div>
+          </div>
+
+          {/* Status*/}
+          <div className="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label htmlFor="typeOfDisaster" className="sr-only">
+                Type of Disaster
+              </label>
+              <input
+                id="status"
+                name="status"
+                type="text"
+                autoComplete="status"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Status (Active/Inactive)"
+                value={status}
+                onChange={(e) => setStatus(e.target.value.toLocaleLowerCase())}
               />
             </div>
           </div>
@@ -178,23 +236,28 @@ const AddDisaster = () => {
 
           {/* State */}
           <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="state" className="sr-only">
-                State
-              </label>
-              <input
-                id="state"
-                name="state"
-                type="text"
-                autoComplete="state"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="State"
-                value={state}
-                onChange={(e) => setState(e.target.value)}
-              />
+              <div>
+                <label htmlFor="state" className="sr-only">
+                  State
+                </label>
+                <select
+                  id="state"
+                  name="contact.address.state" // Use nested structure
+                  autoComplete="state"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  onChange={(e) => setState(e.target.value)}
+                  value={state}
+                >
+                  <option value="">Select State</option>
+                  {statesOfIndia.map((stateName) => (
+                    <option key={stateName} value={stateName}>
+                      {stateName}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
-          </div>
 
           {/* Postal Code */}
           <div className="rounded-md shadow-sm -space-y-px">
