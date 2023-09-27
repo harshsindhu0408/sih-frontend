@@ -35,7 +35,7 @@ const AgencyProfile = () => {
     <div className="w-full flex flex-col items-center justify-center h-full scroll-smooth bg-gray-100">
       <div className="w-full flex flex-col items-center gap-y-10 justify-center">
         <div className="text-4xl overflow-hidden mt-2 lg:text-4xl font-bold text-indigo-700 text-center">
-          Welcome To {agency.name} Profile
+          Welcome To {agency.name}'s Profile
         </div>
 
         <div className="w-11/12 lg:w-8/12 xl:w-8/12 flex flex-col md:flex-row sm:flex-col md:items-center justify-between rounded-md border border-gray-300 bg-white p-6 md:p-8 shadow-md">
@@ -93,14 +93,17 @@ const AgencyProfile = () => {
           </div>
         </div>
 
-        <div className="w-11/12 lg:w-9/12 mt-8">
-          <h2 className="text-2xl font-semibold text-indigo-700">
-            Disasters List
+        <div className="w-11/12 lg:w-9/12 mt-6">
+          <h2 className="text-4xl text-center font-bold overflow-hidden mb-8 text-indigo-600">
+            List Of Disasters Where We Have Helped In
           </h2>
           {/* Disaster info div */}
           <div>
             {disasters.map((disaster) => (
-              <div key={disaster._id} className="p-4 border border-gray-300 rounded-md shadow-md bg-white">
+              <div
+                key={disaster._id}
+                className="p-4 border border-gray-300 rounded-md shadow-md bg-white"
+              >
                 <div>
                   <h3 className="text-lg font-semibold text-indigo-700">
                     {disaster.typeOfDisaster}
