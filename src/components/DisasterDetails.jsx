@@ -6,15 +6,40 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const DisasterDetails = () => {
+  // Redux state for account information
   const accountState = useSelector((state) => state.profile.accountInfo);
+
+  // Local state for disaster details, agencies, and loading status
   const [disaster, setDisaster] = useState(null);
   const [agencies, setAgencies] = useState([]);
   const [loadingData, setLoadingData] = useState(true);
+
+  // React Router's navigate function and disasterId from URL params
   const navigate = useNavigate();
   const { disasterId } = useParams();
 
+  // Function to handle the deletion of a disaster
+  const handleDeleteDisaster = async () => {
+    try {
+      // Make an API call to delete the disaster (replace with your API endpoint)
+      await apiConnector({
+        method: "DELETE",
+        url: `${disasterEndPoints.DELETE_DISASTER_API}/${disasterId}`,
+      });
+
+      // Display a success message and redirect to the disasters list
+      toast.success("Disaster deleted successfully");
+      navigate("/disasters");
+    } catch (error) {
+      toast.error("Error deleting disaster");
+      console.error(error);
+    }
+  };
+
+  // Fetch disaster and agency data when the component mounts
   useEffect(() => {
-    const fetchData = async () => {
+    // Fetch disaster details
+    const fetchDisasterData = async () => {
       try {
         const disasterResponse = await apiConnector({
           method: "GET",
@@ -22,20 +47,16 @@ const DisasterDetails = () => {
         });
 
         setDisaster(disasterResponse.disaster);
-
         setLoadingData(false);
       } catch (error) {
-        toast.error("Error fetching data");
+        toast.error("Error fetching disaster details");
         console.error(error);
         setLoadingData(false);
       }
     };
 
-    fetchData();
-  }, [disasterId]);
-
-  useEffect(() => {
-    const fetchData = async () => {
+    // Fetch agencies related to the disaster
+    const fetchAgenciesData = async () => {
       try {
         const agencyResponse = await apiConnector({
           method: "GET",
@@ -43,16 +64,14 @@ const DisasterDetails = () => {
         });
 
         setAgencies(agencyResponse);
-
-        setLoadingData(false);
       } catch (error) {
-        toast.error("Error fetching data");
+        toast.error("Error fetching agency details");
         console.error(error);
-        setLoadingData(false);
       }
     };
 
-    fetchData();
+    fetchDisasterData();
+    fetchAgenciesData();
   }, [disasterId]);
 
   return (
@@ -105,12 +124,12 @@ const DisasterDetails = () => {
               {agencies.map((agency) => (
                 <li key={agency._id} className="font-bold text-gray-500 mt-2">
                   <div className="w-full">
-                    Name of Agency :{" "}
+                    Name of Agency :
                     <span className="text-lg font-Roborto text-indigo-500">
                       {agency.name}
                     </span>
                     <br></br>
-                    Email:{" "}
+                    Email:
                     <span className="text-lg text-indigo-500">
                       {agency.email}
                     </span>
@@ -120,6 +139,17 @@ const DisasterDetails = () => {
             </ul>
           )}
           <div className="flex mt-6 flex-row gap-x-6 items-center">
+            <div>
+              {disaster.agencies[0] == accountState._id && (
+                <button
+                  onClick={() => handleDeleteDisaster()}
+                  className="bg-red-500 hover:bg-red-600 transition-all duration-200 text-white font-bold py-2 px-4 rounded-full"
+                >
+                  Delete
+                </button>
+              )}
+            </div>
+
             <div>
               {disaster.agencies[0] == accountState._id && (
                 <button
