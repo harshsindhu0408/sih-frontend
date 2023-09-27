@@ -126,7 +126,6 @@ const AgencyProfile = () => {
           <h2 className="text-2xl font-semibold text-indigo-700">
             Resources List
           </h2>
-          {/* Resource info div */}
           {resources.length === 0 ? (
             <p className="text-center py-10 text-gray-500">No resources available.</p>
           ) : (
