@@ -38,6 +38,10 @@ const Disasters = () => {
     );
   }
 
+  const handleDetailsClick = (disasterId) => {
+    // Navigate to the disaster details page with the disaster ID as a param
+    navigate(`/disaster/${disasterId}`);
+  };
 
   return (
     <div className="w-full bg-gray-100 flex  flex-col items-center justify-center">

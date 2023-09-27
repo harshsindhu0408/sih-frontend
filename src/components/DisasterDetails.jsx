@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import apiConnector from "../services/apiConnector";
 import { disasterEndPoints } from "../services/api";
 import { toast } from "react-toastify";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom"; // Import Link from react-router-dom
 
 const DisasterDetails = () => {
   // Extract the disasterId from the URL
