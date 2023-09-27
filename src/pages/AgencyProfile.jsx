@@ -22,7 +22,7 @@ const AgencyProfile = () => {
     );
   }
 
-  const { agency, disasters,resources } = agencyData;
+  const { agency, disasters } = agencyData;
 
   const coordinates = [
     agency.location.coordinates[1],
@@ -94,13 +94,16 @@ const AgencyProfile = () => {
         </div>
 
         <div className="w-11/12 lg:w-9/12 mt-8">
-          <h2 className="text-2xl font-semibold text-indigo-700">
+          <h2 className="text-2xl text-center font-bold  text-indigo-700">
             Disasters List
           </h2>
           {/* Disaster info div */}
           <div>
             {disasters.map((disaster) => (
-              <div key={disaster._id} className="p-4 border border-gray-300 rounded-md shadow-md bg-white">
+              <div
+                key={disaster._id}
+                className="p-4 border border-gray-300 rounded-md shadow-md bg-white"
+              >
                 <div>
                   <h3 className="text-lg font-semibold text-indigo-700">
                     {disaster.typeOfDisaster}
@@ -117,47 +120,18 @@ const AgencyProfile = () => {
                   <p className="text-gray-700">Status: {disaster.status}</p>
                 </div>
 
-
-
-              </div>
-            ))}
-          </div>
-          <div className="w-11/12 lg:w-9/12 mt-8">
-          <h2 className="text-2xl font-semibold text-indigo-700">
-            Resources List
-          </h2>
-          {/* Resource info div */}
-          {resources.length === 0 ? (
-            <p className="text-center py-10 text-gray-500">No resources available.</p>
-          ) : (
-          <div>
-            {resources.map((resource) => (
-              <div key={resource._id} className="p-4 border border-gray-300 rounded-md shadow-md bg-white">
                 <div>
-                  <h3 className="text-lg font-semibold text-indigo-700">
-                    {resource.name}
-                  </h3>
-                  <p className="text-gray-700">Quantity: {resource.quantity}</p>
-                  <p className="text-gray-700">Availability: {resource.availability}</p>
-                  {/* Include other resource details here */}
+                  <MapComponent
+                    coordinates={[
+                      disaster.location.coordinates[1],
+                      disaster.location.coordinates[0],
+                    ]}
+                    className="w-full h-full"
+                  />
                 </div>
-                {/* If the resource has a location, you can display it using MapComponent */}
-                {resource.location && (
-                  <div>
-                    <MapComponent
-                      coordinates={[
-                        resource.location.coordinates[1],
-                        resource.location.coordinates[0],
-                      ]}
-                      className="w-full h-full"
-                    />
-                  </div>
-                )}
               </div>
             ))}
           </div>
-          )}
-              </div>
         </div>
       </div>
     </div>
