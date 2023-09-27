@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from "react";
 import apiConnector from "../services/apiConnector";
-import { resourceEndPoints } from "../services/api"; // Replace with your actual API endpoints
+import { resourceEndPoints } from "../services/api"; // Assuming you have resource endpoints defined
 import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
+import ResoruceItem from "../components/ResoruceItem";
+import axios from "axios";
+
 
 const Resources = () => {
   const [resources, setResources] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiConnector({
-          method: "GET",
-          url: resourceEndPoints.LIST_RESOURCES_API, // Replace with your actual endpoint
-        });
+        const headers = {
+          'Content-Type': "application/json",
+          'Authorization': `Bearer ${sessionStorage.getItem('_token')}`
+        }
+        const response = await axios.get(`http://localhost:8080/api/n1/resource/listResources`, { headers });
+        console.log("API Response:", response);
 
-        setResources(response.resources);
+        setResources(response.data.resources);
         setLoading(false);
       } catch (error) {
         toast.error("Error fetching resources");
@@ -27,34 +34,33 @@ const Resources = () => {
     fetchData();
   }, []);
 
+  const handleDetailsClick = (resourceId) => {
+    // Navigate to the resource details page with the resource ID as a param
+    navigate(`/resource-details/${resourceId}`);
+  };
+
   return (
-    <div>
+    <div className="m-7">
+      <div className="my-3">
+        <Link to="/addResource">
+          <button className="px-4 py-2 bg-blue-500 rounded-full text-white hover:bg-blue-700">
+            Add Resource
+          </button>
+        </Link>
+      </div>
+      <div>
+        <h2 className="text-3xl font-semibold mb-4 text-purple-700">
+          Resource Inventory
+        </h2>
+      </div>
+
       {loading ? (
-        <div className="w-full flex items-center justify-center mt-16">
-          <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-500"></div>
-        </div>
+        <p>Loading...</p>
       ) : (
-        <div>
-          <h2 className="text-3xl font-semibold mb-4 text-purple-700">Resources</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {resources.map((resource) => (
-              <div key={resource._id} className="bg-white shadow-md p-4 rounded-lg">
-                <h3 className="text-xl font-semibold text-blue-800">
-                  {resource.name}
-                </h3>
-                <p className="text-sm text-gray-500 mt-2">
-                  Category: {resource.category}
-                </p>
-                <p className="text-sm text-gray-500">
-                  Availability: {resource.availability}
-                </p>
-                <p className="text-sm mt-2">{resource.description}</p>
-                <button className="mt-4 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-full">
-                  Details
-                </button>
-              </div>
-            ))}
-          </div>
+        <div className="flex flex-wrap mx-10">
+          {resources.map((resource) => (
+            <ResoruceItem key={resource._id} resource={resource} />
+          ))}
         </div>
       )}
     </div>
