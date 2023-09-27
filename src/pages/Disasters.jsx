@@ -30,8 +30,6 @@ const Disasters = () => {
     fetchData();
   }, []);
 
-  
-
   if (!disasters) {
     return (
       <div className="spinner w-full flex items-center justify-center"></div>
@@ -63,7 +61,9 @@ const Disasters = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {disasters.map((disaster) => (
-                <DisasterComponent disaster={disaster} loading = {loading}/>
+                <div key={disaster._id}>
+                  <DisasterComponent disaster={disaster} loading={loading} />
+                </div>
               ))}
             </div>
           </div>

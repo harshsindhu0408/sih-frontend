@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { getAccountInfo } from "../redux/Actions/profileAction";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FiEdit2 } from "react-icons/fi";
 import MapComponent from "../components/MapComponent";
@@ -8,11 +7,7 @@ import MapComponent from "../components/MapComponent";
 const Profile = () => {
   const state = useSelector((state) => state.profile);
   const agency = useSelector((state) => state.profile.accountInfo);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAccountInfo());
-  }, [dispatch]);
+  ;
 
   if (state.loading || !agency) {
     return (

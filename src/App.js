@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
@@ -19,6 +19,7 @@ import AgencyProfile from "./pages/AgencyProfile";
 import AddDisaster from "./components/AddDisaster";
 import DisasterDetails from "./components/DisasterDetails";
 import UpdateDisaster from "./pages/UpdateDisaster";
+import { getAccountInfo } from "./redux/Actions/profileAction";
 
 function PrivateRoute({ children }) {
   const isAuthenticated = useSelector((state) => state.auth.isLoggedin);
@@ -28,6 +29,10 @@ function PrivateRoute({ children }) {
 
 function App() {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAccountInfo());
+  }, [dispatch]);
 
   // Check if there's a token in sessionStorage and dispatch LOGIN_SUCCESS if found
   React.useEffect(() => {

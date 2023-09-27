@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import apiConnector from "../services/apiConnector";
 import { disasterEndPoints } from "../services/api";
 import { toast } from "react-toastify";
-import { useNavigate, useParams, Link } from "react-router-dom"; // Import Link from react-router-dom
+import { useNavigate, useParams } from "react-router-dom"; // Import Link from react-router-dom
+import { useSelector } from "react-redux";
 
 const DisasterDetails = () => {
+  const accountState = useSelector((state) => state.profile.accountInfo);
+  console.log(accountState);
+
   // Extract the disasterId from the URL
   const { disasterId } = useParams();
-  console.log(disasterId);
 
   const [disaster, setDisaster] = useState(null);
   const [agencies, setAgencies] = useState([]);
@@ -22,7 +25,7 @@ const DisasterDetails = () => {
           url: `${disasterEndPoints.GET_DISASTER_API}/${disasterId}`,
         });
 
-        setDisaster(disasterResponse.disaster); 
+        setDisaster(disasterResponse.disaster);
 
         setLoadingData(false);
       } catch (error) {
@@ -43,7 +46,7 @@ const DisasterDetails = () => {
           url: `${disasterEndPoints.FETCH_AGENCIES_FROM_DISASTER}/${disasterId}`,
         });
 
-        setAgencies(agencyResponse); 
+        setAgencies(agencyResponse);
 
         setLoadingData(false);
       } catch (error) {
@@ -102,17 +105,22 @@ const DisasterDetails = () => {
             ) : (
               <ul>
                 {agencies.map((agency) => (
-                  <li
-                    key={agency._id}
-                    className="text-sm text-gray-500 mt-2"
-                  >
+                  <li key={agency._id} className="text-sm text-gray-500 mt-2">
                     {agency.name}, {agency.email}
                   </li>
                 ))}
               </ul>
             )}
           </div>
-
+          {/* {disaster.} */}
+          {disaster.agencies[0] == accountState._id && (
+            <button
+              onClick={() => navigate("update")} // Redirect back to the disasters list
+              className="mt-4 bg-purple-500 hover:bg--600 text-white font-semibold py-2 px-4 rounded-full"
+            >
+              Update
+            </button>
+          )}
           <button
             onClick={() => navigate("/disasters")} // Redirect back to the disasters list
             className="mt-4 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-full"
