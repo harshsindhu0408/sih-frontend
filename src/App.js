@@ -19,6 +19,7 @@ import AgencyProfile from "./pages/AgencyProfile";
 import AddDisaster from "./components/AddDisaster";
 import DisasterDetails from "./components/DisasterDetails";
 import UpdateDisaster from "./pages/UpdateDisaster";
+import AddResources from "./components/AddResource";
 import { getAccountInfo } from "./redux/Actions/profileAction";
 
 function PrivateRoute({ children }) {
@@ -125,6 +126,14 @@ function App() {
           element={
             <PrivateRoute>
               <UpdateDisaster />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/addResource"
+          element={
+            <PrivateRoute>
+              <AddResources />
             </PrivateRoute>
           }
         />
