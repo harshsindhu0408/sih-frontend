@@ -75,54 +75,65 @@ const Agencies = () => {
   }
 
   return (
-    <div className='w-full bg-gray-100 flex items-center gap-y-20 justify-center'>
+    <div >
       <div className='w-11/12'>
         {/* Filter options */}
-        <div>
-          <label>Sort by:</label>
-          <select name="sortBy" value={filters.sortBy} onChange={handleInputChange}>
-            <option value="none">None</option>
-            <option value="state">State</option>
-            <option value="timestamps">Timestamps</option>
-            <option value="registeredAt">Registered At</option>
-          </select>
-        </div>
-        <div>
-          <label>Filter by State:</label>
-          <input
-            type="text"
-            name="filterState"
-            value={filters.filterState}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label>Filter by City:</label>
-          <input
-            type="text"
-            name="filterCity"
-            value={filters.filterCity}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label>Search by Agency Name:</label>
-          <input
-            type="text"
-            name="searchQuery"
-            value={filters.searchQuery}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label>Filter by Disaster Type:</label>
-          <input
-            type="text"
-            name="filterDisasterType"
-            value={filters.filterDisasterType}
-            onChange={handleInputChange}
-          />
-        </div>
+        <div className="mb-4">
+    <label className="block font-bold">Sort by:</label>
+    <select
+      className="w-full px-2 py-1 border border-gray-300 rounded-md"
+      name="sortBy"
+      value={filters.sortBy}
+      onChange={handleInputChange}
+    >
+      <option value="none">None</option>
+      <option value="state">State</option>
+      <option value="timestamps">Timestamps</option>
+      <option value="registeredAt">Registered At</option>
+    </select>
+  </div>
+  <div className="mb-4">
+    <label className="block font-bold">Filter by State:</label>
+    <input
+      className="w-full px-2 py-1 border border-gray-300 rounded-md"
+      type="text"
+      name="filterState"
+      value={filters.filterState}
+      onChange={handleInputChange}
+    />
+  </div>
+  <div className="mb-4">
+    <label className="block font-bold">Filter by City:</label>
+    <input
+      className="w-full px-2 py-1 border border-gray-300 rounded-md"
+      type="text"
+      name="filterCity"
+      value={filters.filterCity}
+      onChange={handleInputChange}
+    />
+  </div>
+  <div className="mb-4">
+    <label className="block font-bold">Search by Agency Name:</label>
+    <input
+      className="w-full px-2 py-1 border border-gray-300 rounded-md"
+      type="text"
+      name="searchQuery"
+      value={filters.searchQuery}
+      onChange={handleInputChange}
+    />
+  </div>
+  <div className="mb-4">
+    <label className="block font-bold">Filter by Disaster Type:</label>
+    <input
+      className="w-full px-2 py-1 border border-gray-300 rounded-md"
+      type="text"
+      name="filterDisasterType"
+      value={filters.filterDisasterType}
+      onChange={handleInputChange}
+    />
+  </div>
+</div>
+<div>
 
         {filteredAgencies.map((agency) => (
           <AgencyComponent
