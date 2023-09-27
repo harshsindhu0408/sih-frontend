@@ -124,7 +124,7 @@ const DisasterDetails = () => {
               {disaster.agencies[0] == accountState._id && (
                 <button
                   onClick={() => navigate("update")}
-                  className="bg-indigo-500 hover:bg-indigo-600 transition-all duration-200 text-white font-bold py-2 px-4 rounded-full"
+                  className="bg-purple-500 hover:bg-purple-600 transition-all duration-200 text-white font-bold py-2 px-4 rounded-full"
                 >
                   Update Disaster
                 </button>
@@ -134,7 +134,7 @@ const DisasterDetails = () => {
             <div>
               <button
                 onClick={() => navigate("/disasters")}
-                className=" bg-indigo-500 hover:bg-indigo-600 transition-all duration-200 text-white font-bold py-2 px-4 rounded-full"
+                className=" bg-purple-500 hover:bg-purple-600 transition-all duration-200 text-white font-bold py-2 px-4 rounded-full"
               >
                 Back to Disasters
               </button>
