@@ -8,6 +8,7 @@ const AgencyComponent = ({ agency }) => {
     agency.location.coordinates[1],
     agency.location.coordinates[0],
   ];
+  console.log(agency);
 
   // Define the URL to the agency profile page
   const agencyProfileUrl = `/agency-profile/${agency._id}`;
@@ -17,11 +18,13 @@ const AgencyComponent = ({ agency }) => {
     <div className="flex items-center justify-center">
       <div className="w-full lg:w-9/12 xl:w-8/12 flex p-4 flex-col md:flex-row overflow-hidden">
         {/* Address div */}
-        <div className="w-full md:w-1/2 mr-6 bg-white border shadow:lg border-gray-300 rounded-md p-6">
-          <p className="font-bold underline text-xl text-gray-700">
-            Agency Location
+        <div className="w-full md:w-1/2 mr-6 bg-white border gap-y-4 shadow:lg border-gray-300 rounded-md p-6">
+
+          <p className="font-bold text-indigo-600 text-2xl overflow-hidden">
+            {agency.name}
           </p>
-          <div className="text-gray-700 mt-4 mb-4">
+
+          <div className="text-gray-700 gap-y-4">
             <p className="mb-2">
               <span className="font-bold">Street:</span>{" "}
               {agency.contact.address.street}
@@ -40,17 +43,23 @@ const AgencyComponent = ({ agency }) => {
             </p>
             <p>
               <span className="font-bold">Postal Code:</span>{" "}
-              {agency.contact.address.postalCode}
+              {agency.phoneNumber}
+            </p>
+            <p className="mb-2">
+              <span className="font-bold">Expertise In:</span>{" "}
+              {agency.expertise.join(',')}
             </p>
           </div>
+
           {/* buttons */}
-          <div className="flex">
-            <Link to={agencyProfileUrl}>
-              <button className="bg-indigo-500 hover:bg-indigo-600 hover:scale-95 block text-white shadow-sm rounded-full px-4 py-2 duration-300 w-20">
-                View
+          <div className="w-full flex">
+            <Link className="w-full" to={agencyProfileUrl}>
+              <button className="bg-indigo-500 w-full hover:bg-indigo-600 hover:scale-95 text-white shadow-sm rounded-full px-4 py-2 duration-300">
+                Profile
               </button>
             </Link>
           </div>
+
         </div>
 
         {/* Map div */}
