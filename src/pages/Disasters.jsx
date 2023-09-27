@@ -31,7 +31,7 @@ const Disasters = () => {
 
   const handleDetailsClick = (disasterId) => {
     // Navigate to the disaster details page with the disaster ID as a param
-    navigate(`/disaster-details/${disasterId}`);
+    navigate(`/disaster/${disasterId}`);
   };
 
   return (

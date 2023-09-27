@@ -18,6 +18,7 @@ import UpdateProfile from "./pages/UpdateProfile";
 import AgencyProfile from "./pages/AgencyProfile";
 import AddDisaster from "./components/AddDisaster";
 import DisasterDetails from "./components/DisasterDetails";
+import UpdateDisaster from "./pages/UpdateDisaster";
 
 function PrivateRoute({ children }) {
   const isAuthenticated = useSelector((state) => state.auth.isLoggedin);
@@ -42,8 +43,15 @@ function App() {
   return (
     <div>
       <Routes>
-      <Route path="/disaster-details/:disasterId" element={<DisasterDetails />} />
         <Route path="/" element={<Home />} />
+        <Route
+          path="/disaster/:disasterId"
+          element={
+            <PrivateRoute>
+              <DisasterDetails />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/agencies"
           element={
@@ -104,6 +112,14 @@ function App() {
           element={
             <PrivateRoute>
               <AddDisaster />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/disaster/:disasterId/update"
+          element={
+            <PrivateRoute>
+              <UpdateDisaster />
             </PrivateRoute>
           }
         />

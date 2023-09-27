@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import apiConnector from "../services/apiConnector";
 import { disasterEndPoints } from "../services/api";
 import { toast } from "react-toastify";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom"; // Import Link from react-router-dom
 
 const DisasterDetails = () => {
   // Extract the disasterId from the URL
@@ -52,7 +52,7 @@ const DisasterDetails = () => {
             <p className="text-sm text-gray-500 mt-2">
               Severity: {disaster.severity}
             </p>
-            
+
             {/* Add more fields below */}
             <p className="text-sm text-gray-500 mt-2">
               Type of Disaster: {disaster.typeOfDisaster}
@@ -65,6 +65,17 @@ const DisasterDetails = () => {
             </p>
             {/* Add more fields as needed */}
           </div>
+
+          {/* Add Update Disaster button */}
+          <div className="mt-4">
+            <Link
+              to={`/disaster/${disasterId}/update`} // Define the URL for updating the disaster
+              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full"
+            >
+              Update Disaster
+            </Link>
+          </div>
+
           <button
             onClick={() => navigate("/disasters")} // Redirect back to the disasters list
             className="mt-4 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-full"
