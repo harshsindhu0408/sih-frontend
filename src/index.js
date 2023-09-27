@@ -35,7 +35,7 @@ root.render(
             pauseOnHover
             theme="light"
           />
-          <div className="flex-grow">
+          <div className="flex-grow bg-gray-100">
             <App />
           </div>
           <Footer className="bg-gray-800 text-white shadow-lg py-6" />

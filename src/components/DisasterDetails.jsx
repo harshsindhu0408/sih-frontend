@@ -2,20 +2,16 @@ import React, { useEffect, useState } from "react";
 import apiConnector from "../services/apiConnector";
 import { disasterEndPoints } from "../services/api";
 import { toast } from "react-toastify";
-import { useNavigate, useParams } from "react-router-dom"; // Import Link from react-router-dom
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const DisasterDetails = () => {
   const accountState = useSelector((state) => state.profile.accountInfo);
-  console.log(accountState);
-
-  // Extract the disasterId from the URL
-  const { disasterId } = useParams();
-
   const [disaster, setDisaster] = useState(null);
   const [agencies, setAgencies] = useState([]);
   const [loadingData, setLoadingData] = useState(true);
   const navigate = useNavigate();
+  const { disasterId } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,82 +54,99 @@ const DisasterDetails = () => {
 
     fetchData();
   }, [disasterId]);
-  console.log(agencies);
 
   return (
-    <div className="mt-4">
+    <div className="sm:w-full md:w-11/12 mx-auto mt-4">
+      <h1 className="md:text-4xl sm:text-2xl overflow-hidden font-bold text-center mb-4 text-indigo-600">
+        Disaster Details
+      </h1>
       {loadingData ? (
         <div className="w-full flex items-center justify-center">
           <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-500"></div>
         </div>
       ) : disaster ? (
-        <div>
-          {/* Display the details of the disaster */}
-          <h2 className="text-3xl font-semibold mb-4 text-purple-700">
-            Disaster Details
+        <div className="bg-white shadow-2xl p-6 rounded-lg">
+          <h2 className="text-xl font-bold mb-2 text-indigo-600">
+            Disaster ID:
           </h2>
-          <div className="bg-white shadow-md p-4 rounded-lg">
-            <h2>Disaster Details</h2>
-            <p className="text-sm text-gray-500 mt-2">
-              Disaster ID: {disasterId}
-            </p>
-            <p className="text-sm text-gray-500 mt-2">
-              Severity: {disaster.severity}
-            </p>
-            {/* Add more fields below */}
-            <p className="text-sm text-gray-500 mt-2">
-              Type of Disaster: {disaster.typeOfDisaster}
-            </p>
-            <p className="text-sm text-gray-500 mt-2">
-              Description: {disaster.description}
-            </p>
-            <p className="text-sm text-gray-500 mt-2">
-              Status: {disaster.status}
-            </p>
-            {/* Add more fields as needed */}
-          </div>
+          <p className="font-bold text-gray-500 mt-2">{disasterId}</p>
 
-          {/* Display the list of related agencies */}
-          <h2 className="text-3xl font-semibold mb-4 mt-6 text-purple-700">
-            Related Agencies
+          <h2 className="text-xl font-bold mb-2 mt-4 text-indigo-600">
+            Severity:
           </h2>
-          <div className="bg-white shadow-md p-4 rounded-lg">
-            {agencies.length === 0 ? (
-              <p className="text-sm text-gray-500 mt-2">
-                No agencies related to this disaster.
-              </p>
-            ) : (
-              <ul>
-                {agencies.map((agency) => (
-                  <li key={agency._id} className="text-sm text-gray-500 mt-2">
-                    {agency.name}, {agency.email}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-          {/* {disaster.} */}
-          {disaster.agencies[0] == accountState._id && (
-            <button
-              onClick={() => navigate("update")} // Redirect back to the disasters list
-              className="mt-4 bg-purple-500 hover:bg--600 text-white font-semibold py-2 px-4 rounded-full"
-            >
-              Update
-            </button>
+          <p className="font-bold text-gray-500 mt-2">{disaster.severity}</p>
+
+          <h2 className="text-xl font-bold mb-2 mt-4 text-indigo-600">
+            Type of Disaster:
+          </h2>
+          <p className="font-bold text-gray-500 mt-2">
+            {disaster.typeOfDisaster}
+          </p>
+
+          <h2 className="text-xl font-bold mb-2 mt-4 text-indigo-600">
+            Description:
+          </h2>
+          <p className="font-bold text-gray-500 mt-2">{disaster.description}</p>
+
+          <h2 className="text-xl font-bold mb-2 mt-4 text-indigo-600">
+            Status:
+          </h2>
+          <p className="font-bold text-gray-500 mt-2">{disaster.status}</p>
+
+          <h2 className="md:text-4xl md:h-12 sm:text-2xl overflow-hidden font-bold mt-4 text-indigo-600">
+            Assisting Organizations
+          </h2>
+          {agencies.length === 0 ? (
+            <p className="font-bold text-gray-500 mt-2">
+              No agencies related to this disaster.
+            </p>
+          ) : (
+            <ul>
+              {agencies.map((agency) => (
+                <li key={agency._id} className="font-bold text-gray-500 mt-2">
+                  <div className="w-full">
+                    Name of Agency :{" "}
+                    <span className="text-lg font-Roborto text-indigo-500">
+                      {agency.name}
+                    </span>
+                    <br></br>
+                    Email:{" "}
+                    <span className="text-lg text-indigo-500">
+                      {agency.email}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ul>
           )}
-          <button
-            onClick={() => navigate("/disasters")} // Redirect back to the disasters list
-            className="mt-4 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-full"
-          >
-            Back to Disasters
-          </button>
+          <div className="flex mt-6 flex-row gap-x-6 items-center">
+            <div>
+              {disaster.agencies[0] == accountState._id && (
+                <button
+                  onClick={() => navigate("update")}
+                  className="bg-indigo-500 hover:bg-indigo-600 transition-all duration-200 text-white font-bold py-2 px-4 rounded-full"
+                >
+                  Update Disaster
+                </button>
+              )}
+            </div>
+
+            <div>
+              <button
+                onClick={() => navigate("/disasters")}
+                className=" bg-indigo-500 hover:bg-indigo-600 transition-all duration-200 text-white font-bold py-2 px-4 rounded-full"
+              >
+                Back to Disasters
+              </button>
+            </div>
+          </div>
         </div>
       ) : (
         <div>
           <p className="text-red-500">Disaster not found.</p>
           <button
-            onClick={() => navigate("/disasters")} // Redirect back to the disasters list
-            className="mt-4 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-full"
+            onClick={() => navigate("/disasters")}
+            className="mt-6 bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-full"
           >
             Back to Disasters
           </button>
