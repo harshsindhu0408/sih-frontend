@@ -8,7 +8,6 @@ const AgencyComponent = ({ agency }) => {
     agency.location.coordinates[1],
     agency.location.coordinates[0],
   ];
-  console.log(agency);
 
   // Define the URL to the agency profile page
   const agencyProfileUrl = `/agency-profile/${agency._id}`;

@@ -7,23 +7,26 @@ import { useNavigate, useParams } from "react-router-dom";
 const DisasterDetails = () => {
   // Extract the disasterId from the URL
   const { disasterId } = useParams();
+  console.log(disasterId);
 
   const [disaster, setDisaster] = useState(null);
+  const [agencies, setAgencies] = useState([]);
   const [loadingData, setLoadingData] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiConnector({
+        const disasterResponse = await apiConnector({
           method: "GET",
           url: `${disasterEndPoints.GET_DISASTER_API}/${disasterId}`,
         });
 
-        setDisaster(response.disaster); // Assuming the API response contains the disaster details
+        setDisaster(disasterResponse.disaster); 
+
         setLoadingData(false);
       } catch (error) {
-        toast.error("Error fetching disaster details");
+        toast.error("Error fetching data");
         console.error(error);
         setLoadingData(false);
       }
@@ -31,6 +34,28 @@ const DisasterDetails = () => {
 
     fetchData();
   }, [disasterId]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const agencyResponse = await apiConnector({
+          method: "GET",
+          url: `${disasterEndPoints.FETCH_AGENCIES_FROM_DISASTER}/${disasterId}`,
+        });
+
+        setAgencies(agencyResponse); 
+
+        setLoadingData(false);
+      } catch (error) {
+        toast.error("Error fetching data");
+        console.error(error);
+        setLoadingData(false);
+      }
+    };
+
+    fetchData();
+  }, [disasterId]);
+  console.log(agencies);
 
   return (
     <div className="mt-4">
@@ -52,7 +77,6 @@ const DisasterDetails = () => {
             <p className="text-sm text-gray-500 mt-2">
               Severity: {disaster.severity}
             </p>
-            
             {/* Add more fields below */}
             <p className="text-sm text-gray-500 mt-2">
               Type of Disaster: {disaster.typeOfDisaster}
@@ -65,6 +89,30 @@ const DisasterDetails = () => {
             </p>
             {/* Add more fields as needed */}
           </div>
+
+          {/* Display the list of related agencies */}
+          <h2 className="text-3xl font-semibold mb-4 mt-6 text-purple-700">
+            Related Agencies
+          </h2>
+          <div className="bg-white shadow-md p-4 rounded-lg">
+            {agencies.length === 0 ? (
+              <p className="text-sm text-gray-500 mt-2">
+                No agencies related to this disaster.
+              </p>
+            ) : (
+              <ul>
+                {agencies.map((agency) => (
+                  <li
+                    key={agency._id}
+                    className="text-sm text-gray-500 mt-2"
+                  >
+                    {agency.name}, {agency.email}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
           <button
             onClick={() => navigate("/disasters")} // Redirect back to the disasters list
             className="mt-4 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-full"
