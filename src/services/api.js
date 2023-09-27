@@ -16,7 +16,7 @@ export const agencyEndPoints = {
 
 // RESOURCE END POINTS
 export const resourceEndPoints = {
-  CREATE_RESOURCE_API: BASE_URL + "/resource/createResource",
+  CREATE_RESOURCE_API: BASE_URL + "/resource/create",
   UPDATE_RESOURCE_API: BASE_URL + "/resource/updateResource/:id",
   GET_RESOURCE_API: BASE_URL + "/resource/getResource/:resourceName",
   LIST_RESOURCES_API: BASE_URL + "/resource/listResources",

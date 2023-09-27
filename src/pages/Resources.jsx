@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import ResoruceItem from "../components/ResoruceItem";
 import axios from "axios";
+import apiConnector from "../services/apiConnector";
+import { resourceEndPoints } from "../services/api";
 
 const Resources = () => {
   const [resources, setResources] = useState([]);
@@ -12,14 +14,13 @@ const Resources = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const headers = {
-          'Content-Type': "application/json",
-          'Authorization': `Bearer ${sessionStorage.getItem('_token')}`
-        }
-        const response = await axios.get(`http://localhost:8080/api/n1/resource/listResources`, { headers });
+        const response = await apiConnector({
+          method:'GET',
+          url:resourceEndPoints.LIST_RESOURCES_API
+        })
         console.log("API Response:", response);
 
-        setResources(response.data.resources);
+        setResources(response.resources);
         setLoading(false);
       } catch (error) {
         toast.error("Error fetching resources");
@@ -27,7 +28,6 @@ const Resources = () => {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
 

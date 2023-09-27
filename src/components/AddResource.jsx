@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { resourceEndPoints } from "../services/api";
+import apiConnector from "../services/apiConnector";
 
 const AddResources = () => {
   // Define state variables for resource properties
@@ -25,12 +27,12 @@ const AddResources = () => {
 
     try {
       // Send a POST request to the API to create the resource
-      const headers = {
-        'Content-Type': "application/json",
-        'Authorization': `Bearer ${sessionStorage.getItem('_token')}` 
-      };
-      const response = await axios.post(`http://localhost:8080/api/n1/resource/create`, newResource, { headers });
-      console.log("API Response:", response);
+      const response = await apiConnector({
+        method:'POST',
+        url:resourceEndPoints.CREATE_RESOURCE_API,
+        body:newResource,
+      })
+      console.log("API Response:", response);    
       toast.success("Resource created successfully");
 
       // Clear form inputs after successful submission
