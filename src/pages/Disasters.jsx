@@ -40,20 +40,24 @@ const Disasters = () => {
     let filtered = disasters;
 
     if (severityFilter) {
-      filtered = filtered.filter((disaster) =>
-        disaster.severity.toLowerCase() === severityFilter.toLowerCase()
+      filtered = filtered.filter(
+        (disaster) =>
+          disaster.severity.toLowerCase() === severityFilter.toLowerCase()
       );
     }
 
     if (stateFilter) {
-      filtered = filtered.filter((disaster) =>
-        disaster.contact.address.state.toLowerCase() === stateFilter.toLowerCase()
+      filtered = filtered.filter(
+        (disaster) =>
+          disaster.contact.address.state.toLowerCase() ===
+          stateFilter.toLowerCase()
       );
     }
 
     if (statusFilter) {
-      filtered = filtered.filter((disaster) =>
-        disaster.status.toLowerCase() === statusFilter.toLowerCase()
+      filtered = filtered.filter(
+        (disaster) =>
+          disaster.status.toLowerCase() === statusFilter.toLowerCase()
       );
     }
 
@@ -64,6 +68,12 @@ const Disasters = () => {
     // Navigate to the disaster details page with the disaster ID as a param
     navigate(`/disaster/${disasterId}`);
   };
+
+  if(loading){
+    return (
+      <div className="spinner w-full flex items-center justify-center"></div>
+    );
+  }
 
   const statesOfIndia = [
     "Andaman and Nicobar Islands",
@@ -106,9 +116,21 @@ const Disasters = () => {
   return (
     <div className="w-full bg-gray-100 flex flex-col items-center justify-center">
       <div className="w-11/12 flex flex-col items-center justify-center">
+        <h2 className="md:text-5xl sm:text-3xl text-center mt-6 font-bold mb-6 overflow-hidden text-indigo-600">
+          Disaster Events
+        </h2>
+        <div className="w-6/12">
+          <Link to="/addDisaster">
+            <button className="bg-indigo-500 w-full hover:bg-indigo-600 transition-all duration-200 text-white font-semibold py-2 px-4 rounded-full">
+              Add Disaster
+            </button>
+          </Link>
+        </div>
         {/* Search bar */}
         <div className="w-8/12 mt-6 mb-4">
-          <label className="block text-indigo-600 font-bold mb-2">Search:</label>
+          <label className="block text-indigo-600 font-bold mb-2">
+            Search:
+          </label>
           <input
             type="text"
             className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
@@ -120,7 +142,9 @@ const Disasters = () => {
         {/* Filters */}
         <div className="w-8/12 gap-x-6 flex justify-between">
           <div className="w-1/3">
-            <label className="block text-indigo-600 font-bold mb-2">Severity:</label>
+            <label className="block text-indigo-600 font-bold mb-2">
+              Severity:
+            </label>
             <select
               className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
               onChange={(e) => setSeverityFilter(e.target.value)}
@@ -133,7 +157,9 @@ const Disasters = () => {
           </div>
 
           <div className="w-1/3">
-            <label className="block text-indigo-600 font-bold mb-2">State:</label>
+            <label className="block text-indigo-600 font-bold mb-2">
+              State:
+            </label>
             <select
               className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
               onChange={(e) => setStateFilter(e.target.value)}
@@ -148,7 +174,9 @@ const Disasters = () => {
           </div>
 
           <div className="w-1/3">
-            <label className="block text-indigo-600 font-bold mb-2">Status:</label>
+            <label className="block text-indigo-600 font-bold mb-2">
+              Status:
+            </label>
             <select
               className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
               onChange={(e) => setStatusFilter(e.target.value)}
@@ -162,17 +190,16 @@ const Disasters = () => {
 
         {/* List of disasters */}
         <div className="w-full">
-          <h2 className="text-4xl text-center mt-6 font-bold mb-4 overflow-hidden text-indigo-600">
-            Disaster Events
-          </h2>
-          <div className="grid grid-cols-1 mb-20 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 mb-20 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
             {filteredDisasters
               .filter((disaster) =>
                 // Case-insensitive search
-                disaster.typeOfDisaster.toLowerCase().includes(searchTerm.toLowerCase())
+                disaster.typeOfDisaster
+                  .toLowerCase()
+                  .includes(searchTerm.toLowerCase())
               )
               .map((disaster) => (
-                <div key={disaster._id}>
+                <div className="ml-10 w-full" key={disaster._id}>
                   <DisasterComponent disaster={disaster} loading={loading} />
                 </div>
               ))}

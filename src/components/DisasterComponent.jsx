@@ -1,3 +1,5 @@
+// DisasterComponent.js
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -21,11 +23,10 @@ const DisasterComponent = ({ disaster }) => {
   const handleDetailsClick = (disasterId) => {
     // Navigate to the disaster details page with the disaster ID as a param
     navigate(`/disaster/${disasterId}`);
-    console.log(disaster.agencies);
   };
 
   return (
-    <div key={disaster._id} className="bg-white border-2 shadow-md p-4 rounded-lg">
+    <div className="bg-white border-2 shadow-md p-4 rounded-lg max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-lg">
       <h3 className="text-2xl font-bold text-blue-800">{disaster.typeOfDisaster}</h3>
       <p className="text-sm font-bold text-gray-500 mt-2">Date - {disaster.timestamp}</p>
       <p className="text-sm font-bold text-gray-500">Severity level: {disaster.severity}</p>
