@@ -2,6 +2,7 @@ import { AuthTypes } from "../action_types";
 import apiConnector from "../../services/apiConnector";
 import { agencyEndPoints } from "../../services/api";
 import { toast } from "react-toastify";
+import {getAccountInfo} from "./profileAction";
 
 // Action to handle user login
 export const authLogin = (user_data, navigate) => {
@@ -30,6 +31,8 @@ export const authLogin = (user_data, navigate) => {
         type: AuthTypes.LOGIN_SUCCESS,
         payload: { token }, // You can store additional user data in the payload if needed
       });
+
+      dispatch(getAccountInfo());
 
       // Show a success toast
       toast.success("Login successfully!");
