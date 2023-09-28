@@ -169,3 +169,23 @@ button.normal{
   }
 }
 
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  flex-grow: 1;
+}
+
+footer {
+  flex-shrink: 0;
+}

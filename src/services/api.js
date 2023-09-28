@@ -16,7 +16,7 @@ export const agencyEndPoints = {
 
 // RESOURCE END POINTS
 export const resourceEndPoints = {
-  CREATE_RESOURCE_API: BASE_URL + "/resource/createResource",
+  CREATE_RESOURCE_API: BASE_URL + "/resource/create",
   UPDATE_RESOURCE_API: BASE_URL + "/resource/updateResource/:id",
   GET_RESOURCE_API: BASE_URL + "/resource/getResource/:resourceName",
   LIST_RESOURCES_API: BASE_URL + "/resource/listResources",
@@ -30,7 +30,9 @@ export const disasterEndPoints = {
   ADD_DISASTER_API: BASE_URL + "/disaster/addDisaster",
   UPDATE_DISASTER_API: BASE_URL + "/disaster/updateDisaster",
   GET_DISASTER_API: BASE_URL + "/disaster/getDisaster",
+  DELETE_DISASTER_API: BASE_URL + "/disaster/deleteDisaster",
   FETCH_ALL_DISASTERS_API: BASE_URL + "/disaster/allDisasters",
+  FETCH_AGENCIES_FROM_DISASTER: BASE_URL + "/disaster/getAgenciesForDisaster",
 };
 
 // ALERT END POINTS

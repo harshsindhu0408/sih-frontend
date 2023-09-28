@@ -133,10 +133,14 @@ const Agencies = () => {
             ? temp
             : temp.filter(
                 (agency) =>
-                  agency.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                  agency.name
+                    .toLowerCase()
+                    .includes(searchQuery.toLowerCase()) ||
                   agency.email.toLowerCase().includes(searchQuery.toLowerCase())
               )
-          : temp.filter((agency) => agency.expertise.includes(selectedExpertise))
+          : temp.filter((agency) =>
+              agency.expertise.includes(selectedExpertise)
+            )
       );
     } else {
       const filtered = temp.filter((agency) =>
@@ -180,87 +184,94 @@ const Agencies = () => {
   return (
     <div className="w-full bg-gray-100 flex items-center gap-y-20 justify-center">
       <div className="w-full flex flex-col items-center gap-y-6 justify-center">
-        <div className="overflow-hidden text-indigo-600 font-Serif mt-6 text-4xl md:h-12 font-bold">
+        <div className="overflow-hidden md:h-14 text-indigo-600 font-sans mt-6 text-4xl md:text-5xl font-bold">
           All Agencies List
         </div>
         {/* Filters and search */}
-        <div className="md:w-7/12 sm:w-full">
+        <div className="w-11/12 flex flex-col items-center justify-center">
           {/* Search Bar */}
-          <div className="w-full mb-6 md:w-auto relative">
-            <div className="relative">
+          <div className="w-full md:w-8/12 relative">
+          <label className="block text-indigo-600 font-bold mb-2">Search:</label>
               <input
                 type="text"
                 placeholder="Search agencies..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-2 pl-10 border rounded-lg shadow-md focus:outline-none focus:ring focus:border-indigo-500"
+                className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
               />
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
-                <FiSearch className="text-gray-400" />
-              </div>
-            </div>
+              
+            
           </div>
 
-          <div className="flex md:flex-row sm:flex-col gap-x-12 items-center justify-center p-4">
-            {/* Filetrs by expertise */}
-            <div className="mb-4">
-              <label htmlFor="expertiseFilter" className="mr-2">
-                Filter by Expertise:
-              </label>
-              <select
-                id="expertiseFilter"
-                value={selectedExpertise}
-                onChange={(e) => setSelectedExpertise(e.target.value)}
-                className="px-4 py-2 border rounded-lg shadow-md focus:outline-none focus:ring focus:border-indigo-500"
-              >
-                <option value="">All</option>
-                {uniqueExpertise.map((expertise) => (
-                  <option key={expertise} value={expertise}>
-                    {expertise}
-                  </option>
-                ))}
-              </select>
+          <div className="flex w-8/12 md:flex-row sm:flex-col gap-x-12 mt-4 items-center justify-between">
+            {/* Filters by expertise */}
+            <div className="w-full">
+              <div className="flex flex-col items-start">
+                <div>
+                  <label
+                    htmlFor="expertiseFilter"
+                    className="block text-indigo-600 font-bold mb-2"
+                  >
+                    Filter by Expertise:
+                  </label>
+                </div>
+                <select
+                  id="expertiseFilter"
+                  value={selectedExpertise}
+                  onChange={(e) => setSelectedExpertise(e.target.value)}
+                  className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                >
+                  <option value="">All</option>
+                  {uniqueExpertise.map((expertise) => (
+                    <option key={expertise} value={expertise}>
+                      {expertise}
+                    </option>
+                  ))}
+                </select>
+                <div></div>
+              </div>
             </div>
 
             {/* Distance filter */}
-            <div className="mb-4">
-              <label htmlFor="distanceFilter" className="mr-2">
-                Filter by Distance:
-              </label>
-              <select
-                id="distanceFilter"
-                value={selectedDistanceRange}
-                onChange={(e) => setSelectedDistanceRange(e.target.value)}
-                className="px-4 py-2 border rounded-lg shadow-md focus:outline-none focus:ring focus:border-indigo-500"
-              >
-                <option value="">Select Distance Range</option>
-                <option value="within10km">Within 10km</option>
-                <option value="within50km">Within 50km</option>
-                <option value="within100km">Within 100km</option>
-                <option value="within200km">Within 200km</option>
-                <option value=">200km">Greater than 200km</option>
-              </select>
+            <div className="w-full">
+              <div className="flex flex-col items-start">
+                <label
+                  htmlFor="distanceFilter"
+                  className="block text-indigo-600 font-bold mb-2"
+                >
+                  Filter by Distance:
+                </label>
+                <select
+                  id="distanceFilter"
+                  value={selectedDistanceRange}
+                  onChange={(e) => setSelectedDistanceRange(e.target.value)}
+                  className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                >
+                  <option value="">Select Distance Range</option>
+                  <option value="within10km">Within 10km</option>
+                  <option value="within50km">Within 50km</option>
+                  <option value="within100km">Within 100km</option>
+                  <option value="within200km">Within 200km</option>
+                  <option value=">200km">Greater than 200km</option>
+                </select>
+              </div>
             </div>
 
             {/* Filter by state */}
-            <div className="mb-4">
-              <label htmlFor="stateFilter" className="mr-2">
-                Filter by State:
-              </label>
-              <select
-                id="stateFilter"
-                value={selectedState}
-                onChange={(e) => setSelectedState(e.target.value)}
-                className="px-4 py-2 border rounded-lg shadow-md focus:outline-none focus:ring focus:border-indigo-500"
-              >
-                <option value="">All States</option>
-                {statesOfIndia.map((state) => (
-                  <option key={state} value={state}>
-                    {state}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <div className="w-full">
+            <label className="block text-indigo-600 font-bold mb-2">State:</label>
+            <select
+              className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+              onChange={(e) => setSelectedState(e.target.value)}
+            >
+              <option value="">All</option>
+              {statesOfIndia.map((state) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
+            </select>
+          </div>
           </div>
         </div>
 
@@ -269,7 +280,7 @@ const Agencies = () => {
           {filteredAgencies &&
             filteredAgencies.map((agency) => (
               <AgencyComponent
-                key={agency._id} // Assuming _id is the unique identifier for each agency
+                key={agency._id}
                 agency={agency}
                 coordinates={[
                   agency.location.coordinates[1],

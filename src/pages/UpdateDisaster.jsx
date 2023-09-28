@@ -3,6 +3,7 @@ import apiConnector from "../services/apiConnector";
 import { disasterEndPoints } from "../services/api";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import bgimg from '../assets/update disaster.png'
 
 const UpdateDisaster = () => {
   const navigate = useNavigate();
@@ -62,77 +63,105 @@ const UpdateDisaster = () => {
 
   if (loading) {
     return (
-      <div className="w-full flex items-center justify-center mt-16">
+      <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-500"></div>
       </div>
     );
   }
 
   return (
-    <div>
-      <h2 className="text-3xl font-semibold mb-4 text-purple-700">
-        Update Disaster
-      </h2>
-      <form onSubmit={handleSubmit}>
-        {/* Type of Disaster */}
-        <div className="mb-4">
-          <label htmlFor="typeOfDisaster" className="block mb-2">
-            Type of Disaster
-          </label>
-          <input
-            type="text"
-            id="typeOfDisaster"
-            name="typeOfDisaster"
-            value={disaster.typeOfDisaster}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-md"
-            required
+    <div className="flex flex-col items-center justify-center bg-gray-50 min-h-screen">
+      <div className="w-11/12 flex flex-col items-center justify-center lg:flex-row xl:flex-row 2xl:flex-row sm:flex-col flex-wrap">
+        {/* Left Section (Update Form) */}
+        <div className="lg:w-7/12  sm:w-full p-8">
+          <h2 className="md:text-6xl sm:text-2xl overflow-hidden font-extrabold md:h-20 text-indigo-600 text-center">
+            Update Disaster Info
+          </h2>
+
+          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+            {/* Type of Disaster */}
+            <div className="rounded-md shadow-sm -space-y-px">
+              <div>
+                <label htmlFor="typeOfDisaster" className="sr-only">
+                  Type of Disaster
+                </label>
+                <input
+                  id="typeOfDisaster"
+                  name="typeOfDisaster"
+                  type="text"
+                  autoComplete="typeOfDisaster"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Type of Disaster"
+                  value={disaster.typeOfDisaster}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
+            {/* Severity */}
+            <div className="rounded-md shadow-sm -space-y-px">
+              <div>
+                <label htmlFor="severity" className="sr-only">
+                  Severity
+                </label>
+                <input
+                  id="severity"
+                  name="severity"
+                  type="text"
+                  autoComplete="severity"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Severity"
+                  value={disaster.severity}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
+            {/* Description */}
+            <div className="rounded-md shadow-sm -space-y-px">
+              <div>
+                <label htmlFor="description" className="sr-only">
+                  Description
+                </label>
+                <textarea
+                  id="description"
+                  name="description"
+                  autoComplete="description"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Description"
+                  value={disaster.description}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
+            {/* Other fields */}
+            {/* Add more input fields for other disaster properties as needed */}
+
+            <div className="text-center w-full">
+              <button
+                type="submit"
+                className="bg-indigo-500 w-full hover:bg-indigo-600 transition-all duration-200 text-white font-semibold py-2 px-4 rounded-full"
+              >
+                Update Disaster
+              </button>
+            </div>
+          </form>
+        </div>
+
+        {/* Right Section (Image) */}
+        <div className="lg:w-5/12  sm:hidden md:block flex items-center justify-center">
+          <img
+            src={bgimg} // Replace with the actual image path
+            alt="Agency"
+            width="600px"
+            className="object-cover ml-10 object-center sm:h-auto"
           />
         </div>
-
-        {/* Severity */}
-        <div className="mb-4">
-          <label htmlFor="severity" className="block mb-2">
-            Severity
-          </label>
-          <input
-            type="text"
-            id="severity"
-            name="severity"
-            value={disaster.severity}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-md"
-            required
-          />
-        </div>
-
-        {/* Description */}
-        <div className="mb-4">
-          <label htmlFor="description" className="block mb-2">
-            Description
-          </label>
-          <textarea
-            id="description"
-            name="description"
-            value={disaster.description}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-md"
-            required
-          />
-        </div>
-
-        {/* Other fields */}
-        {/* Add more input fields for other disaster properties as needed */}
-
-        <div className="text-center">
-          <button
-            type="submit"
-            className="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-full"
-          >
-            Update Disaster
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
   );
 };

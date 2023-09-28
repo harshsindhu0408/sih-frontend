@@ -40,13 +40,14 @@ const AgencyProfile = () => {
 
         <div className="w-11/12 lg:w-8/12 xl:w-8/12 flex flex-col md:flex-row sm:flex-col md:items-center justify-between rounded-md border border-gray-300 bg-white p-6 md:p-8 shadow-md">
           <div className="flex flex-col items-start justify-center gap-y-2">
-            <div className="lg:font-semibold bg-white sm:text-md lg:text-lg text-gray-700">
-              Name: {agency.name}
+            <div className="text-2xl font-bold text-indigo-500">Basic Details</div>
+            <div className="text-gray-700 text-lg font-bold mt-2">
+              Agency Name: {agency.name}
             </div>
-            <div className="lg:font-semibold sm:text-md lg:text-lg text-gray-700">
+            <div className="text-gray-700 text-lg font-bold mt-2">
               Email: {agency.email}
             </div>
-            <div className="lg:font-semibold sm:text-md lg:text-lg text-gray-700">
+            <div className="text-gray-700 text-lg font-bold mt-2">
               Mobile: {agency.phoneNumber}
             </div>
           </div>
@@ -64,10 +65,10 @@ const AgencyProfile = () => {
 
         <div className="w-full md:w-10/12 lg:w-9/12 xl:w-8/12 flex md:flex-row sm:flex-col gap-x-6 sm:gap-y-6 overflow-hidden items-center justify-center">
           <div className="w-11/12 bg-white md:w-1/2 border md:h-72 border-gray-300 shadow-lg rounded-md p-6 md:p-10">
-            <p className="font-semibold text-lg text-gray-700">
+            <p className="font-bold text-lg text-indigo-600">
               Where We Are Located
             </p>
-            <div className="text-gray-700 mt-2">
+            <div className="text-gray-700 text-lg font-bold mt-2">
               <p>Street: {agency.contact.address.street}</p>
               <p>City: {agency.contact.address.city}</p>
               <p>State: {agency.contact.address.state}</p>
@@ -102,22 +103,22 @@ const AgencyProfile = () => {
             {disasters.map((disaster) => (
               <div
                 key={disaster._id}
-                className="p-4 border border-gray-300 rounded-md shadow-md bg-white"
+                className="p-4 border border-gray-300 mb-8 rounded-md shadow-md bg-white"
               >
-                <div>
-                  <h3 className="text-lg font-semibold text-indigo-700">
+                <div className="mb-4">
+                  <h3 className="text-2xl font-bold text-indigo-700">
                     {disaster.typeOfDisaster}
                   </h3>
-                  <p className="text-gray-700">Severity: {disaster.severity}</p>
-                  <p className="text-gray-700">
+                  <p className="text-gray-700 font-bold">Severity: {disaster.severity}</p>
+                  <p className="text-gray-700 font-bold">
                     Description: {disaster.description}
                   </p>
-                  <p className="text-gray-700">
+                  <p className="text-gray-700 font-bold">
                     Location: {disaster.contact.address.city},{" "}
                     {disaster.contact.address.state},{" "}
                     {disaster.contact.address.country}
                   </p>
-                  <p className="text-gray-700">Status: {disaster.status}</p>
+                  <p className="text-gray-700 font-bold">Status: {disaster.status}</p>
                 </div>
 
                 <div>

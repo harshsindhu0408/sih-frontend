@@ -20,22 +20,26 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <Navbar />
-        <ToastContainer
-          position="top-center"
-          rounded={true}
-          autoClose={4000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-        <App />
-        <Footer />
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <ToastContainer
+            position="top-center"
+            rounded={true}
+            autoClose={4000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+          <div className="flex-grow bg-gray-100">
+            <App />
+          </div>
+          <Footer className="bg-gray-800 text-white shadow-lg py-6" />
+        </div>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>
