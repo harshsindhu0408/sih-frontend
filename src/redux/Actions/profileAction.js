@@ -49,7 +49,8 @@ export const updateAccountInfo = (updatedInfo,navigate) => {
       // Dispatch the ACCOUNT_SUCCESS action with the updated account data
       dispatch({
         type: ProfileTypes.UPDATE_ACCOUNT_SUCCESS,
-        payload: response.data, // You can modify this based on your API response structure
+        payload: response.updatedAgency
+        , // You can modify this based on your API response structure
       });
 
       // Show a success toast
