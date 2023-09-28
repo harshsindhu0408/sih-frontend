@@ -11,7 +11,7 @@ const Banner = () => {
       right: false,
       title: "Disaster",
       img: img_1,
-      link: "/disaster",
+      link: "/disasters",
       description:
         "Get real-time updates on ongoing disasters, including their type, location, and severity. Stay one step ahead with our comprehensive disaster information.",
     },
