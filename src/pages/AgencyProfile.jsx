@@ -22,7 +22,7 @@ const AgencyProfile = () => {
     );
   }
 
-  const { agency, disasters } = agencyData;
+  const { agency, disasters, resources } = agencyData;
 
   const coordinates = [
     agency.location.coordinates[1],
@@ -125,6 +125,43 @@ const AgencyProfile = () => {
                     coordinates={[
                       disaster.location.coordinates[1],
                       disaster.location.coordinates[0],
+                    ]}
+                    className="w-full h-full"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* resources info div */}
+        <div className="w-11/12 lg:w-9/12 mt-6">
+          <h2 className="text-4xl text-center font-bold overflow-hidden mb-8 text-indigo-600">
+            List Of Resources We Acquire
+          </h2>
+          <div>
+            {resources.map((resource) => (
+              <div
+                key={resource._id}
+                className="p-4 border border-gray-300 rounded-md shadow-md bg-white"
+              >
+                <div>
+                  <h3 className="text-lg font-semibold text-indigo-700">
+                    {resource.name}
+                  </h3>
+
+                  <p className="text-gray-700">Quantity: {resource.quantity}</p>
+                  <p className="text-gray-700">
+                    Availability: {resource.availability.toString()}
+                  </p>
+
+                  <p className="text-gray-700">Status: {resource.status}</p>
+                </div>
+
+                <div>
+                  <MapComponent
+                    coordinates={[
+                      resource.location.coordinates[1],
+                      resource.location.coordinates[0],
                     ]}
                     className="w-full h-full"
                   />

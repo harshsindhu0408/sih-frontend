@@ -3,9 +3,9 @@ import ImageCard from "../components/ImageCard";
 import HarshPic from "../assets/team/harsh.jpg";
 import MukeshPic from "../assets/team/mukesh.jpg";
 import SmritiPic from "../assets/team/smriti.jpg";
-import NeerajPic from '../assets/team/neeraj.jpg';
-import AdityaPic from '../assets/team/aditya.jpeg';
-import SanveevPic from "../assets/team/sanjeev.jpeg"
+import NeerajPic from "../assets/team/neeraj.jpg";
+import AdityaPic from "../assets/team/aditya.jpeg";
+import SanveevPic from "../assets/team/sanjeev.jpeg";
 
 const AboutUs = () => {
   const photos = [
@@ -63,13 +63,10 @@ const AboutUs = () => {
         {/* Image cards */}
 
         <div className=" w-9/12 mt-10 gap-y-10 flex flex-row items-center justify-center gap-x-32 flex-wrap overflow-hidden">
-        {
-            photos.map((data) => (
-              <ImageCard data = {data}/>
-            ))
-          }
+          {photos.map((data) => (
+            <ImageCard key={data.id} data={data} />
+          ))}
         </div>
-
       </div>
     </div>
   );
