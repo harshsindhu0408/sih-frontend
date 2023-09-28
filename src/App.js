@@ -31,10 +31,6 @@ function PrivateRoute({ children }) {
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getAccountInfo());
-  }, [dispatch]);
-
   // Check if there's a token in sessionStorage and dispatch LOGIN_SUCCESS if found
   React.useEffect(() => {
     const token = sessionStorage.getItem("_token");
@@ -43,6 +39,7 @@ function App() {
         type: AuthTypes.LOGIN_SUCCESS,
         payload: token,
       });
+      dispatch(getAccountInfo());
     }
   }, [dispatch]);
 
