@@ -21,6 +21,8 @@ import DisasterDetails from "./components/DisasterDetails";
 import UpdateDisaster from "./pages/UpdateDisaster";
 import AddResources from "./components/AddResource";
 import { getAccountInfo } from "./redux/Actions/profileAction";
+import Alert from "./pages/Alert";
+import CreateAlert from "./components/CreateAlert";
 
 function PrivateRoute({ children }) {
   const isAuthenticated = useSelector((state) => state.auth.isLoggedin);
@@ -131,6 +133,22 @@ function App() {
           element={
             <PrivateRoute>
               <AddResources />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/alert"
+          element={
+            <PrivateRoute>
+              <Alert />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/createAlert"
+          element={
+            <PrivateRoute>
+              <CreateAlert />
             </PrivateRoute>
           }
         />
