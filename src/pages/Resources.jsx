@@ -67,7 +67,14 @@ const Resources = () => {
     navigate(`/resource-details/${resourceId}`);
   };
 
-  if(loading){
+  const handleDeleteResource = (resourceId) => {
+    // Remove the deleted resource from the resources state
+    setResources((prevResources) =>
+      prevResources.filter((resource) => resource._id !== resourceId)
+    );
+  };
+
+  if (loading) {
     return (
       <div className="spinner w-full flex items-center justify-center"></div>
     );
@@ -126,19 +133,21 @@ const Resources = () => {
             />
           </div>
           <div className="w-1/3">
-          <label className="block text-indigo-600 font-bold mb-2">Status:</label>
-          <select
-            className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-            onChange={(e) => setStatusFilter(e.target.value)}
-          >
-            <option value="">All</option>
-            {allStatuses.map((status) => (
-              <option key={status} value={status}>
-                {status}
-              </option>
-            ))}
-          </select>
-        </div>
+            <label className="block text-indigo-600 font-bold mb-2">
+              Status:
+            </label>
+            <select
+              className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+              onChange={(e) => setStatusFilter(e.target.value)}
+            >
+              <option value="">All</option>
+              {allStatuses.map((status) => (
+                <option key={status} value={status}>
+                  {status}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -147,7 +156,7 @@ const Resources = () => {
             resource.name.toLowerCase().includes(searchTerm.toLowerCase())
           )
           .map((resource) => (
-            <ResoruceItem key={resource._id} resource={resource} />
+            <ResoruceItem key={resource._id} resource={resource} onDelete={handleDeleteResource}/>
           ))}
       </div>
     </div>

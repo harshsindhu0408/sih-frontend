@@ -17,12 +17,12 @@ export const agencyEndPoints = {
 // RESOURCE END POINTS
 export const resourceEndPoints = {
   CREATE_RESOURCE_API: BASE_URL + "/resource/create",
-  UPDATE_RESOURCE_API: BASE_URL + "/resource/updateResource/:id",
+  UPDATE_RESOURCE_API: BASE_URL + "/resource/updateResource",
   GET_RESOURCE_API: BASE_URL + "/resource/getResource/:resourceName",
   LIST_RESOURCES_API: BASE_URL + "/resource/listResources",
   STATUS_OF_RESOURCES_API: BASE_URL + "/resource/getResourceStatus",
   SHARE_RESOURCES_API: BASE_URL + "/resource/shareResource",
-  DELETE_RESOURCES_API: BASE_URL + "/resource/deleteResource/:resourceId",
+  DELETE_RESOURCES_API: BASE_URL + "/resource/deleteResource",
 };
 
 // DISASTER END POINTS
