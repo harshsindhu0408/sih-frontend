@@ -23,6 +23,7 @@ export const resourceEndPoints = {
   STATUS_OF_RESOURCES_API: BASE_URL + "/resource/getResourceStatus",
   SHARE_RESOURCES_API: BASE_URL + "/resource/shareResource",
   DELETE_RESOURCES_API: BASE_URL + "/resource/deleteResource",
+  GET_SHARED_AGENCIES: BASE_URL + "/resource/getAgency",
 };
 
 // DISASTER END POINTS

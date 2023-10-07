@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import apiConnector from "../services/apiConnector";
 import { resourceEndPoints } from "../services/api";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function ResoruceItem({ resource, onDelete }) {
   const accountState = useSelector((state) => state.profile.accountInfo);
@@ -27,6 +27,7 @@ export default function ResoruceItem({ resource, onDelete }) {
       console.error(error);
     }
   };
+
   return (
     <div className="bg-white rounded-lg shadow-md p-4 m-3">
       <h3 className="text-xl font-semibold text-indigo-700 mb-2">
@@ -60,6 +61,8 @@ export default function ResoruceItem({ resource, onDelete }) {
               Update resource
             </button>
           )}
+
+          <button onClick={() => navigate(`/resource/${resource._id}`)}>View Details</button>
         </div>
       </div>
     </div>

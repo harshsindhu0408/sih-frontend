@@ -22,7 +22,6 @@ const Resources = () => {
           method: "GET",
           url: resourceEndPoints.LIST_RESOURCES_API,
         });
-        console.log("API Response:", response);
 
         setResources(response.resources);
         setLoading(false);
