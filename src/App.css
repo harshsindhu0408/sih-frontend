@@ -12,6 +12,12 @@
   object-fit: cover;
   background-repeat: no-repeat;
 }
+.login-page {
+  background-image: url("./assets/login-page.svg");
+  height: 700px;
+  object-fit: cover;
+  background-repeat: no-repeat;
+}
 
 
 

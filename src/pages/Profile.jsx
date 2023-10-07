@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FiEdit2 } from "react-icons/fi";
+import { MdPassword } from "react-icons/md";
 import MapComponent from "../components/MapComponent";
 
 const Profile = () => {
@@ -29,6 +30,19 @@ const Profile = () => {
           Welcome To {agency.name} Profile
         </div>
 
+        {/* Change Password button */}
+        <Link to={"/change-password"}>
+            <div
+              className="flex sm:w-full md:w-[200px] flex-row gap-x-2 items-center mt-4 md:mt-0 justify-center text-white font-bold overflow-hidden md:text-[14px] sm:text-xs sm:px-2 py-2
+            transition-all duration-200 border md:px-4 md:py-3 rounded-full bg-indigo-500 hover:bg-indigo-600"
+            >
+              <button className="text-white overflow-hidden">
+                Change Password
+              </button>
+              <MdPassword className="text-white" />
+            </div>
+          </Link>
+
         {/* top box with edit profile button div */}
         <div className="w-11/12 lg:w-8/12 xl:w-8/12 flex flex-col md:flex-row sm:flex-col md:items-center justify-between rounded-md border border-gray-300 bg-white p-6 md:p-8 shadow-md">
           {/* Name and email div */}
@@ -43,13 +57,16 @@ const Profile = () => {
             <div className="text-gray-700 text-lg font-bold">
               Mobile: {agency.phoneNumber}
             </div>
+            <div className="text-gray-700 text-lg font-bold">
+              Expertise: {agency.expertise}
+            </div>
           </div>
 
           {/* Edit profile button section */}
           <Link to={"/update-profile"}>
             <div
               className="flex sm:w-full md:w-[200px] flex-row gap-x-2 items-center mt-4 md:mt-0 justify-center text-white font-bold overflow-hidden md:text-[14px] sm:text-xs sm:px-2 py-2
-            transition-all duration-200 border md:px-4 md:py-2 rounded-full bg-indigo-500 hover:bg-indigo-600"
+            transition-all duration-200 border md:px-4 md:py-3 rounded-full bg-indigo-500 hover:bg-indigo-600"
             >
               <button className="text-white overflow-hidden">
                 Update Profile
@@ -76,7 +93,7 @@ const Profile = () => {
             <Link to={"/update-profile"}>
               <div
                 className="flex flex-row gap-x-2 items-center justify-center text-white font-bold md:text-[14px] sm:text-xs sm:px-2 py-2
-            transition-all duration-200 mt-4 border md:px-4 md:py-2 rounded-full bg-indigo-500 hover:bg-indigo-600"
+            transition-all duration-200 mt-4 border md:px-4 md:py-3 rounded-full bg-indigo-500 hover:bg-indigo-600"
               >
                 <button className="text-white overflow-hidden">
                   Update Location
