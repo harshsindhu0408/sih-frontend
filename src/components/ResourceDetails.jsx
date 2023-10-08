@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 
 const ResourceDetails = () => {
   const { resourceId } = useParams();
-  console.log("resource ki id in final", resourceId);
   const [resource, setResource] = useState(null);
   const [loading, setLoading] = useState(true);
   const state = useSelector((state) => state.profile);
@@ -20,9 +19,8 @@ const ResourceDetails = () => {
           method: "GET",
           url: `${resourceEndPoints.GET_RESOURCE_API}/${resourceId}`,
         });
-        console.log("API Response:", response);
 
-        setResource(response.resource); // Assuming the resource is in response.data
+        setResource(response.resource);
         setLoading(false);
       } catch (error) {
         toast.error("Error fetching resource");
@@ -31,23 +29,29 @@ const ResourceDetails = () => {
       }
     };
     fetchData();
-  }, [resourceId]); // Add resourceId as a dependency to re-fetch when it changes
-
-  
+  }, [resourceId]);
 
   if (loading) {
-    <div className="spinner w-full flex items-center justify-center"></div>
+    return (
+      <div className="w-full flex items-center justify-center">
+        <div className="spinner"></div>
+      </div>
+    );
   }
 
   if (state.loading || !agency || loading || !resource) {
     return (
-      <div className="spinner w-full flex items-center justify-center"></div>
+      <div className="w-full flex items-center justify-center">
+        <div className="spinner"></div>
+      </div>
     );
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-semibold mb-4">Resource Details</h1>
+    <div className="md:w-8/12 sm:w-full mx-auto p-4">
+      <h1 className="font-bold overflow-hidden text-indigo-500 text-4xl sm:text-3xl mb-4">
+        Resource Details
+      </h1>
       <div className="border rounded-lg p-4">
         <p className="mb-2">
           <span className="font-semibold">Name:</span> {resource.name}
@@ -61,27 +65,36 @@ const ResourceDetails = () => {
         <p className="mb-2">
           <span className="font-semibold">Owner Agency:</span> {agency.name}
         </p>
-        <p className="mb-2">
-          <span className="font-semibold">Owner Agency Email:</span> {agency.email}
+        <p className="mb-2 sm:w-8/12 md:w-full">
+          <span className="font-semibold">Owner Agency Email:</span>{" "}
+          <span className="break-all">{agency.email}</span>
         </p>
-        <p className="mb-2">
-          <span className="font-semibold">Availability:</span> {resource.availability}
+        <p
+          className={`mb-2 text-${resource.availability ? "green" : "red"}-500`}
+        >
+          Availability: {resource.availability ? "Available" : "Not Available"}
         </p>
       </div>
 
-      {/* Conditionally render shared agencies section */}
       {resource.sharedWith.length > 0 && (
         <div className="mt-4 border rounded-lg p-4">
           <h2 className="text-xl font-semibold mb-2">Shared With Agencies</h2>
           <ul>
-            {resource.sharedWith.map((agency, index) => (
-              <li key={index}>{agency.name}</li>
+            {resource.sharedWith.map((sharedAgency, index) => (
+              <li key={index}>{sharedAgency.name}</li>
             ))}
           </ul>
         </div>
       )}
 
-      <Link to="/resources" className="mt-4 block">Back to Resources</Link>
+      <Link
+        to="/resources"
+        className="bg-blue-500 mt-4 w-full md:w-2/12 hover:bg-blue-600
+       text-white font-semibold py-2 px-4 rounded-full transition-transform
+        hover:scale-105 flex items-center justify-center"
+      >
+        Back to Resources
+      </Link>
     </div>
   );
 };

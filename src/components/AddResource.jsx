@@ -86,12 +86,14 @@ const AddResources = () => {
               required
             />
           </div>
-          <div className="mb-4">
+          {/* Availability */}
+          <div className="rounded-md flex flex-row gap-x-6 shadow-sm mb-4">
             <label className="block text-sm font-semibold mb-2">Availability</label>
             <input
               type="checkbox"
               checked={availability}
               onChange={(e) => setAvailability(e.target.checked)}
+              className="h-5 w-5 text-indigo-600 focus:ring-indigo-500 rounded"
             />
           </div>
           <button

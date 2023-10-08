@@ -29,9 +29,9 @@ const AlertComponent = ({ alert }) => {
   }, [alert.senderAgency]);
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 md:p-8">
+    <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 md:p-8 font-semibold">
       <h1 className="text-xl sm:text-2xl font-semibold text-blue-500 mb-2">
-        {senderAgencyDetails ? senderAgencyDetails._id : "Loading..."}
+        {senderAgencyDetails ? senderAgencyDetails.name : "Loading..."}
       </h1>
       <p className="text-gray-700">Desc: {alert.description}</p>
       <p className="text-gray-700 mt-2">Severity: {alert.severity}</p>
@@ -46,16 +46,19 @@ const AlertComponent = ({ alert }) => {
         Contact Email:{" "}
         {senderAgencyDetails ? senderAgencyDetails.email : "Loading..."}
       </p>
-      {senderAgencyDetails && (
-        <Link
-          className="w-full"
-          to={`/agency-profile/${senderAgencyDetails._id}`}
-        >
-          <button className="bg-indigo-500 w-full hover:bg-indigo-600 hover:scale-95 text-white shadow-sm rounded-full px-4 py-2 duration-300">
-            Agency Profile
-          </button>
-        </Link>
-      )}
+
+      <div className="mt-4">
+        {senderAgencyDetails && (
+          <Link
+            className="w-full"
+            to={`/agency-profile/${senderAgencyDetails._id}`}
+          >
+            <button className="bg-indigo-500 w-full hover:bg-indigo-600 hover:scale-95 text-white shadow-sm rounded-full px-4 py-2 duration-300">
+              Agency Profile
+            </button>
+          </Link>
+        )}
+      </div>
     </div>
   );
 };

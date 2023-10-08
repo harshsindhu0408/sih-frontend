@@ -29,41 +29,41 @@ export default function ResoruceItem({ resource, onDelete }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 m-3">
-      <h3 className="text-xl font-semibold text-indigo-700 mb-2">
-        {resource.name}
-      </h3>
-      <div className="">
-        <p className="text-gray-600">Status: {resource.status}</p>
-        <p className="text-gray-600">Quantity: {resource.quantity}</p>
-        <p
-          className={`text-${resource.availability ? "green-500" : "red-500"}`}
-        >
+    <div className="bg-white rounded-lg shadow-md p-6 space-y-4">
+      <h3 className="text-xl font-semibold text-indigo-700">{resource.name}</h3>
+      <div className="text-gray-600">
+        <p>Status: {resource.status}</p>
+        <p>Quantity: {resource.quantity}</p>
+        <p className={`text-${resource.availability ? "green" : "red"}-500`}>
           Availability: {resource.availability ? "Available" : "Not Available"}
         </p>
-        {/* Add additional resource properties here */}
+      </div>
 
-        <div className="flex flex-row items-start gap-x-8 mt-2">
-          {resource.ownerAgency == accountState._id && (
-            <button
-              className="bg-red-500 hover:bg-red-600 hover:scale-95 text-white font-semibold py-2 px-4 rounded-full transition duration-200 ease-in-out"
-              onClick={() => deleteResource(resource._id)}
-            >
-              Delete
-            </button>
-          )}
+      <div className="flex w-full items-center justify-start overflow-hidden space-x-4">
+        {resource.ownerAgency === accountState._id && (
+          <button
+            className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-full transition-all duration-200"
+            onClick={() => deleteResource(resource._id)}
+          >
+            Delete
+          </button>
+        )}
 
-          {resource.ownerAgency == accountState._id && (
-            <button
-              className="bg-indigo-500 hover:bg-indigo-600 hover:scale-95 transition-all duration-200 text-white font-semibold py-2 px-4 rounded-full ease-in-out"
-              onClick={() => navigate(`/updateResource/${resource._id}`)}
-            >
-              Update resource
-            </button>
-          )}
+        {resource.ownerAgency === accountState._id && (
+          <button
+            className="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-full transition-all duration-200"
+            onClick={() => navigate(`/updateResource/${resource._id}`)}
+          >
+            Update
+          </button>
+        )}
 
-          <button onClick={() => navigate(`/resource/${resource._id}`)}>View Details</button>
-        </div>
+        <Link
+          to={`/resource/${resource._id}`}
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full transition-all duration-200 flex items-center"
+        >
+          View Details
+        </Link>
       </div>
     </div>
   );

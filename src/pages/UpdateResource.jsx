@@ -167,9 +167,6 @@ const UpdateResource = () => {
               />
             </div>
 
-            {/* Other fields */}
-            {/* Add more input fields for other resource properties as needed */}
-
             <div className="text-center w-full">
               <button
                 type="submit"

@@ -52,9 +52,11 @@ const Alert = () => {
   return (
     <div className="bg-gray-100 flex flex-col items-center justify-center">
       <div className="w-11/12 md:w-3/4 lg:w-2/3 flex flex-col items-center justify-center">
-        <h2 className="text-3xl md:h-16 sm:text-4xl md:text-5xl text-center mt-6 font-bold mb-6 text-indigo-600">
+        <h2 className="text-3xl overflow-hidden md:h-16 sm:text-4xl md:text-5xl text-center mt-6 font-bold mb-6 text-indigo-600">
           Alerts Section
         </h2>
+
+        {/* Create Alert */}
         <div className="w-6/12">
           <Link to="/createAlert">
             <button className="bg-indigo-500 w-full hover:bg-indigo-600 transition-all duration-200 text-white font-semibold py-2 px-4 rounded-full">
@@ -90,6 +92,7 @@ const Alert = () => {
             ))}
           </div>
         </div>
+
       </div>
     </div>
   );
