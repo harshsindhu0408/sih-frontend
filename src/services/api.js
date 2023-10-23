@@ -1,4 +1,4 @@
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+const BASE_URL = "https://sih-five.vercel.app/api/n1";
 
 // AGENCY END POINTS
 export const agencyEndPoints = {
