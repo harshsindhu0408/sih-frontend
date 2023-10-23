@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8080/api/n1";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 // AGENCY END POINTS
 export const agencyEndPoints = {
