@@ -6,7 +6,6 @@ import Agencies from "./pages/Agencies";
 import Disasters from "./pages/Disasters";
 import Profile from "./pages/Profile";
 import Resources from "./pages/Resources";
-import AboutUs from "./pages/AboutUs"; // This is now an open route
 import Login from "./pages/Auth/Login";
 import ChangePassword from "./pages/Auth/ChangePassword";
 import SignUp from "./pages/Auth/SignUp";
@@ -91,7 +90,7 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route path="/about" element={<AboutUs />} />{" "}
+        {/* <Route path="/about" element={<AboutUs />} />{" "} */}
         {/* This is now an open route */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/signup" element={<SignUp />} />
